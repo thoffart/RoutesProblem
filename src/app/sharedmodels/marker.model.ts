@@ -1,5 +1,5 @@
 export class MarkerModel {
-   lat: number;
-   lng: number;
-
+  constructor(   
+    public lat: number,
+    public lng: number) {}
 }
