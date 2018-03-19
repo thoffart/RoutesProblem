@@ -7,12 +7,13 @@ import {MarkerModel} from '../sharedmodels/marker.model';
   styleUrls: ['./mapainicio.component.css']
 })
 export class MapainicioComponent implements OnInit {
-  zoom: number = 10;
+  zoom: number = 14;
   markermodel: MarkerModel[] = [
-    new MarkerModel (51.678418, 7.809007)
+    new MarkerModel (-22.3430567, -49.0496513),
+    new MarkerModel (-22.3437944, -49.05197339999999),
   ];
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number = -22.3430567;
+  lng: number = -49.0496513;
   constructor() { }
 
   ngOnInit() {
