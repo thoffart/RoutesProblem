@@ -9,3 +9,7 @@
   [latitude]="m.lat" 
   [longitude]="m.lng"></agm-marker>
 </agm-map>
+ <h2>Request</h2>
+    <button type="button" (click)="makerequest()">Make Request</button>
+    <div *ngIf="loading" >loading</div>
+    <pre>{{data | json}}</pre>

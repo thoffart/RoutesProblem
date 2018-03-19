@@ -1,3 +1,4 @@
+import { MapgetroutesService } from './../sharedservices/mapgetroutes.service';
 import { MapainicioComponent } from './mapainicio.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +15,6 @@ import { AgmCoreModule } from '@agm/core';
     })
   ],
   exports: [MapainicioComponent],
-  providers: [],
+  providers: [MapgetroutesService],
 })
 export class MapainicioModule {}
