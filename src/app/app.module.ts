@@ -4,15 +4,17 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { FormsmapsModule } from './formsmaps/formsmaps.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     MapainicioModule,
+    FormsmapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
