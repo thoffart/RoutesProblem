@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl} from '@angular/forms'
+
+import { GoogleMapsAPIWrapper } from '@agm/core/services/google-maps-api-wrapper';
 
 @Component({
   selector: 'formsmaps',
