@@ -19,10 +19,6 @@ export class FormsmapsComponent implements OnInit {
   ngOnInit() {
   }
 
-<<<<<<< HEAD
-  onSubmit(value: any): void {
-    
-=======
   addend() {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.locationForm.get('ends')).push(control);
@@ -34,7 +30,6 @@ export class FormsmapsComponent implements OnInit {
 
   onSubmit(value: any): void {
     console.log(value);
->>>>>>> forms
   }
 
 }

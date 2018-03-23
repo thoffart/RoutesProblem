@@ -50,14 +50,11 @@ export class MapainicioComponent implements OnInit {
       origin: { lat: -22.3430567, lng: -49.0496513 },
       destination: { lat: -22.3437944, lng: -49.05197339999999 }
     };
-    console.log(this.dirs);
     this.dirs.push(this.dir);
-    console.log(this.dirs);
     this.dir = {
       origin: { lat: -22.3430567, lng: -49.0496513 },
       destination: { lat: -22.3404809, lng: -49.0568258 }
     };
     this.dirs.push(this.dir);
-    console.log(this.dirs);
   }
 }
