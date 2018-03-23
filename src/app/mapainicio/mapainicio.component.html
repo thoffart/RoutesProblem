@@ -1,5 +1,6 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
+<button type="button" (click)="getDirection()">Get</button>
 <agm-map 
   [latitude]="lat" 
   [longitude]="lng"
@@ -8,8 +9,10 @@
   *ngFor = "let m of markermodel"
   [latitude]="m.lat" 
   [longitude]="m.lng"></agm-marker>
+  <agm-direction 
+  *ngIf="dir" 
+  [origin]="dir.origin" 
+  [destination]="dir.destination">
+  </agm-direction>  
 </agm-map>
- <h2>Request</h2>
-    <button type="button" (click)="makerequest()">Make Request</button>
-    <div *ngIf="loading" >loading</div>
-    <pre>{{data | json}}</pre>
+
