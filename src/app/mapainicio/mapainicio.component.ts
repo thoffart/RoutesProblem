@@ -13,12 +13,8 @@ declare var google: any;
   styleUrls: ['./mapainicio.component.css']
 })
 export class MapainicioComponent implements OnInit {
-  @Input() origin;
-  @Input() destination;
-  @Input() waypoints;
   dir = undefined;
-  private _map: Promise<mapTypes.GoogleMap>;
-  private _mapResolver: (value?: mapTypes.GoogleMap) => void;
+  travelmode: string = 'BICYCLING';
   zoom: number = 14;
   data: Object;
   markermodel: MarkerModel[] = [
@@ -27,21 +23,10 @@ export class MapainicioComponent implements OnInit {
   ];
   lat: number = -22.3430567;
   lng: number = -49.0496513;
-  constructor(private http: Http, private mapgetroutes: MapgetroutesService, private _loader: MapsAPILoader) { 
-    this._map =
-        new Promise<mapTypes.GoogleMap>((resolve: () => void) => { this._mapResolver = resolve; });
+  constructor(private http: Http, private mapgetroutes: MapgetroutesService) { 
   }
 
   ngOnInit() {
-  }
-
-
-  createMap(el: HTMLElement, mapOptions: mapTypes.MapOptions): Promise<void> {
-    return this._loader.load().then(() => {
-      const map = new google.maps.Map(el, mapOptions);
-      this._mapResolver(<mapTypes.GoogleMap>map);
-      return;
-    });
   }
   getDirection() {
     this.dir = {
