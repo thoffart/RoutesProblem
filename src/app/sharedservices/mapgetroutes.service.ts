@@ -11,9 +11,9 @@ import { Http, Response, Headers} from '@angular/http';
     headers.append('Access-Control-Allow-Origin', 'localhost:4200');
     headers.append('Access-Control-Allow-Methods', 'GET');
     headers.append('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    this.http.get('https://maps.googleapis.com/maps/api/directions/json?key=AIzaSyCWrV5T0lq1ryrpWBX59nMPMFgaDJG5TxY&origin=Rua Ruy Mendes deRosis, 1-175 - Vila Universitaria, Bauru - SP&destination=Pizzaria 101 Sabores, 80, R. Padre João, 16 - Vila Cidade Universitaria, Bauru - SP, 17012-020',  {headers: headers}).subscribe((res: Response) => {
+    this.http.get('https://maps.googleapis.com/maps/api/directions/json?key=AIzaSyCWrV5T0lq1ryrpWBX59nMPMFgaDJG5TxY&origin=Rua Ruy Mendes deRosis, 1-175 - Vila Universitaria, Bauru - SP&destination=Kozan Sushi Bauru Restaurante Japonês Rodízio, Alameda Dr. Octávio Pinheiro Brisolla, 1547 - Nova Cidade Universitária, Bauru - SP, 17012-191',  {headers: headers}).subscribe((res: Response) => {
       this.data = res.json();
-      console.log(res);
+      console.log(this.data);
     });
     return this.data;
   }

@@ -16,7 +16,7 @@ declare var google: any;
 })
 export class MapainicioComponent implements OnInit {
   dir: any;
-  data: Object;
+  data: Object = [];
   dirs: { 
     origin: {
       lat: number, 
@@ -31,7 +31,6 @@ export class MapainicioComponent implements OnInit {
   ];
   travelmode: string = 'BICYCLING';
   zoom: number = 14;
-  data: Object;
  //"lat": -22.3404809,
    //                   "lng": -49.0568258
   markermodel: MarkerModel[] = [
@@ -60,5 +59,6 @@ export class MapainicioComponent implements OnInit {
 
   makeRequest(): void {
     this.data = this.mapgetroutes.makerequest();
+    console.log(this.data);
   }
 }
