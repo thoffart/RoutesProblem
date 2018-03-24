@@ -16,7 +16,7 @@ declare var google: any;
 })
 export class MapainicioComponent implements OnInit {
   dir: any;
-  
+  data: Object;
   dirs: { 
     origin: {
       lat: number, 
@@ -56,5 +56,9 @@ export class MapainicioComponent implements OnInit {
       destination: { lat: -22.3404809, lng: -49.0568258 }
     };
     this.dirs.push(this.dir);
+  }
+
+  makeRequest(): void {
+    this.data = this.mapgetroutes.makerequest();
   }
 }

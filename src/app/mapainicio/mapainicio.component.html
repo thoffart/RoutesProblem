@@ -17,4 +17,8 @@
   [travelMode]="travelmode">
   </agm-direction>  
 </agm-map>
-
+<div>
+    <h2>Request</h2>
+    <button type="button" (click)="makeRequest()">Make Request</button>
+    <pre>{{data | json}}</pre>
+  </div>
