@@ -1,3 +1,4 @@
+import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
 import { MarkerModel } from './../sharedmodels/marker.model';
 import { Component, OnInit, Input } from '@angular/core';
 import {MapgetroutesService} from '../sharedservices/mapgetroutes.service';
@@ -17,6 +18,7 @@ declare var google: any;
 export class MapainicioComponent implements OnInit {
   dir: any;
   data: Object = [];
+
   dirs: { 
     origin: {
       lat: number, 
@@ -61,4 +63,8 @@ export class MapainicioComponent implements OnInit {
     this.data = this.mapgetroutes.makerequest();
     console.log(this.data);
   }
+
+
+
+
 }
