@@ -15,7 +15,7 @@
         </div>
         <br>
           <i (click)="addend()" class="fa fa-plus-circle" aria-hidden="true"></i>
-        <button type="submit" [disabled]="!locationForm.valid">Buscar</button>
+        <button type="submit" [disabled]="!locationForm.valid" (click)= "getRotas()">Buscar</button>
       </form>
     </div>
   </div>

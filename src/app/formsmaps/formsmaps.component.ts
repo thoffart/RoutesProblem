@@ -1,3 +1,4 @@
+import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormArray} from '@angular/forms';
 
@@ -9,8 +10,9 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormA
 })
 export class FormsmapsComponent implements OnInit {
   locationForm: FormGroup;
+  rotas: string[] = [];
 
-  constructor(fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService) {
     this.locationForm = fb.group({
         'ends': new FormArray([new FormControl(null, Validators.required), new FormControl(null, Validators.required)])
     });
@@ -30,6 +32,14 @@ export class FormsmapsComponent implements OnInit {
 
   onSubmit(value: any): void {
     console.log(value);
+  }
+
+  getRotas() {
+    for (const i of (<FormArray>this.locationForm.get('ends')).value) {
+        this.rotas.push(i);
+    }
+    this.formstoroute.Addroutes(this.rotas);
+    this.rotas = [];
   }
 
 }

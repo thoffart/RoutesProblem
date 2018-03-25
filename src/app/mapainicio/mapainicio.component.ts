@@ -1,7 +1,7 @@
 import { MarkerModel } from './../sharedmodels/marker.model';
 import { Component, OnInit, Input } from '@angular/core';
 import {MapgetroutesService} from '../sharedservices/mapgetroutes.service';
-import {Http, Response} from '@angular/http'
+import {Http, Response} from '@angular/http';
 import { MapsAPILoader } from '@agm/core/services/maps-api-loader/maps-api-loader';
 import * as mapTypes from '@agm/core/services/google-maps-types';
 import { GoogleMapsAPIWrapper } from '@agm/core';
