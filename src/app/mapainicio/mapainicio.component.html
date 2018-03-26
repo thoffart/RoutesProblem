@@ -11,14 +11,16 @@
   [longitude]="m.lng">
 </agm-marker>
   <agm-direction
-  *ngFor = "let r of dirs"
-  [origin]="r.origin" 
-  [destination]="r.destination"
+  *ngFor = "let d of destination"
+  [origin]="origin" 
+  [destination]="d.destination"
   [travelMode]="travelmode">
   </agm-direction>  
 </agm-map>
-<div>
+<div *ngIf="formscomplete()">
     <h2>Request</h2>
-    <button type="button" (click)="makeRequest()">Make Request</button>
-    <pre>{{data | json}}</pre>
+    <button type="button" (click)="makeRequest()">Adicionar endereços</button>
+    <div>
+      <pre>{{data | json}}</pre>
+    </div>
   </div>

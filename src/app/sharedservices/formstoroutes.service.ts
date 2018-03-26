@@ -1,12 +1,12 @@
 import { MarkerModel } from './../sharedmodels/marker.model';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Jsonp } from '@angular/http';
 
 @Injectable()
 export class FormstoroutesService {
   private rotas: string[];
   private markermodel: MarkerModel[];
-  data: Object = [];
+  data: Jsonp[] = [];
 
   addsroutes: boolean = false;
   apigeocode: string = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -33,12 +33,21 @@ export class FormstoroutesService {
 
   GetGeocode(rotas: string[]): void {
     for (let i=0; i< rotas.length; i++) {
-      this.http.get(this.apigeocode + rotas[i]  + this.apikey).subscribe((res: Response) =>  {
-        this.data = res.json();
-        console.log(this.data);
+      this.http.get(this.apigeocode + rotas[i]  + this.apikey)
+      .subscribe((res: Response) =>  {
+        this.data[i] = res.json().results[0].geometry.location;
       })
+      
     }
+    this.addsroutes = true;
+    console.log(this.data);
   }
+
+  GetData(): Jsonp[] {
+    return this.data;
+  }
+
+  
 
 
 }
