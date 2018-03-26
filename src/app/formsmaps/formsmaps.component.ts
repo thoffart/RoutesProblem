@@ -31,7 +31,7 @@ export class FormsmapsComponent implements OnInit {
   }
 
   onSubmit(value: any): void {
-    console.log(value);
+    
   }
 
   getRotas() {
@@ -39,6 +39,7 @@ export class FormsmapsComponent implements OnInit {
         this.rotas.push(i);
     }
     this.formstoroute.Addroutes(this.rotas);
+    this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];
   }
 

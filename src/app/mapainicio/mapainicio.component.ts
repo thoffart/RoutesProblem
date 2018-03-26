@@ -18,7 +18,7 @@ declare var google: any;
 export class MapainicioComponent implements OnInit {
   dir: any;
   data: Object = [];
-
+  routes: string[];
   dirs: { 
     origin: {
       lat: number, 
@@ -41,7 +41,7 @@ export class MapainicioComponent implements OnInit {
   ];
   lat: number = -22.3430567;
   lng: number = -49.0496513;
-  constructor(private http: Http, private mapgetroutes: MapgetroutesService) { 
+  constructor(private http: Http, private mapgetroutes: MapgetroutesService, private formsroutesservice: FormstoroutesService) { 
   }
 
   ngOnInit() {
@@ -64,6 +64,8 @@ export class MapainicioComponent implements OnInit {
     console.log(this.data);
   }
 
+  addmarker(): void {
+  }
 
 
 

@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FormsmapsModule } from './formsmaps/formsmaps.module';
+import { MapgetroutesService } from './sharedservices/mapgetroutes.service';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { FormsmapsModule } from './formsmaps/formsmaps.module';
     MapainicioModule,
     FormsmapsModule,
   ],
-  providers: [FormstoroutesService],
+  providers: [FormstoroutesService, MapgetroutesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
