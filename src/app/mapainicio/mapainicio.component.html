@@ -11,10 +11,9 @@
   [longitude]="m.lng">
 </agm-marker>
   <agm-direction
-  *ngFor = "let d of destination"
-  [origin]="origin" 
-  [destination]="d.destination"
-  [travelMode]="travelmode">
+  *ngFor = "let d of dirs"
+  [origin]="d.origin" 
+  [destination]="d.destination">
   </agm-direction>  
 </agm-map>
 <div *ngIf="formscomplete()">

@@ -1,3 +1,4 @@
+import { DirectionModel } from './../sharedmodels/directions.model';
 import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
 import { MarkerModel } from './../sharedmodels/marker.model';
 import { Component, OnInit, Input } from '@angular/core';
@@ -7,7 +8,6 @@ import { MapsAPILoader } from '@agm/core/services/maps-api-loader/maps-api-loade
 import * as mapTypes from '@agm/core/services/google-maps-types';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 import { RoutesModel } from '../sharedmodels/routes.model';
-import { DirectionModel } from '../sharedmodels/directions.model';
 declare var google: any;
 
 @Component({
@@ -20,11 +20,26 @@ export class MapainicioComponent implements OnInit {
     new MarkerModel (-22.3430567, -49.0496513),
     new MarkerModel (-22.3437944, -49.05197339999999),
   ];
-  origin: MarkerModel;
-  destination: MarkerModel[] = [];
+  origin: DirectionModel = new DirectionModel('0', '0');
+  destination: DirectionModel[] = [
+    new DirectionModel('0', '0'),
+    new DirectionModel('0', '0')
+  ];
   lat: number = -22.3430567;
   lng: number = -49.0496513;
   dir: any;
+  dirs: { 
+    origin: {
+      lat: number, 
+      lng: number 
+    },
+    destination: {
+      lat: number,
+      lng: number
+    }
+  }[] = [
+    
+  ];
   data: Jsonp[];
   routes: string[];
   travelmode: string = 'BICYCLING';
@@ -37,12 +52,22 @@ export class MapainicioComponent implements OnInit {
   ngOnInit() {
   }
   getDirection() {
-    this.origin = this.markermodel[0];
-    this.destination = this.markermodel;
+    for (let i=0; i<=this.destination.length;i++) {
+      for (let j=0; j<=this.destination.length;j++) {
+        this.dir = {
+          origin: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng },
+          destination: { lat: this.markermodel[j].lat, lng: this.markermodel[j].lng }
+        };
+        this.dirs.push(this.dir);
+      }
+    }
+    console.log(this.dirs);
+    
   }
 
   makeRequest(): void {
     this.data = this.formsroutesservice.GetData();
+    this.mapgetroutes.searchroute(this.data);
     this.addmarker(this.data);
   }
 
@@ -55,6 +80,7 @@ export class MapainicioComponent implements OnInit {
     }
     console.log(this.markermodel);
     this.getDirection();
+
     
   }
 

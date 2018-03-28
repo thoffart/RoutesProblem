@@ -1,7 +1,6 @@
-import { MarkerModel } from './marker.model';
 export class DirectionModel {
   constructor(
-    public origin: MarkerModel,
-    public destination: MarkerModel
+    public lat: string,
+    public lng: string
   ) {}
 }
