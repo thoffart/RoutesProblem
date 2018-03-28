@@ -63,9 +63,14 @@ import { Http, Response, Headers, Jsonp } from '@angular/http';
         }
       }
       //console.log(this.data);
-      //console.log('distance' + distance);
-      //console.log('duration' + duration);
+      console.log('distance' + this.distance);
+      console.log('duration' + this.duration);
     })
+  }
+
+  getarrays(distance: number[][], duration: number[][]): void {
+    distance = this.distance;
+    duration = this.duration;
   }
 
 

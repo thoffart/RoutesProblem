@@ -7,7 +7,6 @@ import {Http, Response, Jsonp} from '@angular/http';
 import { MapsAPILoader } from '@agm/core/services/maps-api-loader/maps-api-loader';
 import * as mapTypes from '@agm/core/services/google-maps-types';
 import { GoogleMapsAPIWrapper } from '@agm/core';
-import { RoutesModel } from '../sharedmodels/routes.model';
 declare var google: any;
 
 @Component({
