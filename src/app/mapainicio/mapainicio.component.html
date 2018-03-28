@@ -17,9 +17,5 @@
   </agm-direction>  
 </agm-map>
 <div *ngIf="formscomplete()">
-    <h2>Request</h2>
     <button type="button" (click)="makeRequest()">Adicionar endereços</button>
-    <div>
-      <pre>{{data | json}}</pre>
-    </div>
   </div>

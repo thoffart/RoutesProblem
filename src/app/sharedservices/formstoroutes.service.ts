@@ -34,13 +34,13 @@ export class FormstoroutesService {
   GetGeocode(rotas: string[]): void {
     for (let i=0; i< rotas.length; i++) {
       this.http.get(this.apigeocode + rotas[i]  + this.apikey)
-      .subscribe((res: Response) =>  {
+      .subscribe((res: Response) =>  {  
         this.data[i] = res.json().results[0].geometry.location;
       })
       
     }
     this.addsroutes = true;
-    console.log(this.data);
+    //console.log(this.data);
   }
 
   GetData(): Jsonp[] {
