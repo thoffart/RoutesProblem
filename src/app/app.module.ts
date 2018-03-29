@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { FormsmapsModule } from './formsmaps/formsmaps.module';
 import { MapgetroutesService } from './sharedservices/mapgetroutes.service';
 import { MethodsComponent } from './methods/methods.component';
+import { ExemplosComponent } from './exemplos/exemplos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MethodsComponent,
+    ExemplosComponent,
 ],
   imports: [
     BrowserModule,
