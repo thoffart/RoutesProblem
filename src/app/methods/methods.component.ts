@@ -48,7 +48,7 @@ export class MethodsComponent implements OnInit {
     }
   }
 
-  resolve(): void {
+  resolvepercmin(): void {
     //class example
     this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
     this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
@@ -66,7 +66,7 @@ export class MethodsComponent implements OnInit {
     var marcano: number[][];
     marcano = [];
     var rede: string[] = [];
-    var z: number = 0;
+    var z: number[] = [];
     for (var i = 0; i < 10; i++) {
 			marcano[i] = [];
 		}
@@ -91,7 +91,12 @@ export class MethodsComponent implements OnInit {
         }
       }
     }
-    z = this.recurpercmin(0, 0, marcano, jafoi, 0)
+    for (let i=0;i<this.duration[0].length;i++) {
+      if (this.duration[0][i] != 1000) {
+        jafoi = [];
+        z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0);
+      }
+    }
     console.log(z);
     //console.log(marcano);
     //console.log('teste');
@@ -101,11 +106,11 @@ export class MethodsComponent implements OnInit {
 
   recurpercmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number): number {
     var aux: number = 0;
-    if (j==this.duration[0].length-1) {
+    if (j==this.duration[0].length-1) { //ça routine vérifie si le noeud est le demière
       return 0;
     }
-    if (this.check(jafoi, marcano[i][j])) {  // check if the number belongs to numbers cheks
-      return this.recurpercmin(i+1, marcano[i][j], marcano, jafoi, n)  
+    if (this.check(jafoi, marcano[i][j])) {  // ça routine vérifie si le noeud c'était marqué
+      return this.recurpercmin(i+1, j, marcano, jafoi, n);
     }
     jafoi[n] = j;
     n++;
@@ -120,4 +125,9 @@ export class MethodsComponent implements OnInit {
     }
     return false;
   }
+
+  resolve(): void {
+    
+  }
+
 }
