@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class MethodsComponent implements OnInit {
   distance: number[][] = [];
   duration: number[][] = [];
-
+  rede: string = ''
   constructor(private mapgetroutesservice: MapgetroutesService) { }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class MethodsComponent implements OnInit {
     }
   }
 
-  resolvepercmin(): void {
+  resolve(): void {
     //class example
     this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
     this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
@@ -67,6 +67,7 @@ export class MethodsComponent implements OnInit {
     marcano = [];
     var rede: string[] = [];
     var z: number[] = [];
+    var redeaux: string[] = [];
     for (var i = 0; i < 10; i++) {
 			marcano[i] = [];
 		}
@@ -94,27 +95,30 @@ export class MethodsComponent implements OnInit {
     for (let i=0;i<this.duration[0].length;i++) {
       if (this.duration[0][i] != 1000) {
         jafoi = [];
-        z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0);
+        z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0, this.rede);
+        redeaux[i] = this.rede;
       }
     }
     console.log(z);
+    console.log(redeaux);
     //console.log(marcano);
     //console.log('teste');
     //console.log(this.duration);
 
   }
 
-  recurpercmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number): number {
+  recurpercmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number, rede: string): number {
     var aux: number = 0;
     if (j==this.duration[0].length-1) { //ça routine vérifie si le noeud est le demière
       return 0;
     }
     if (this.check(jafoi, marcano[i][j])) {  // ça routine vérifie si le noeud c'était marqué
-      return this.recurpercmin(i+1, j, marcano, jafoi, n);
+      return this.recurpercmin(i+1, j, marcano, jafoi, n, rede);
     }
     jafoi[n] = j;
     n++;
-    return this.recurpercmin(0, marcano[i][j], marcano, jafoi, n) + this.duration[i][j];
+    rede += String(j) + ' ' + String(marcano[i][j]) + ' ';
+    return this.recurpercmin(0, marcano[i][j], marcano, jafoi, n, rede) + this.duration[i][j];
   }
 
   check(jafoi: number[], n): boolean {
@@ -124,10 +128,6 @@ export class MethodsComponent implements OnInit {
       }
     }
     return false;
-  }
-
-  resolve(): void {
-    
   }
 
 }
