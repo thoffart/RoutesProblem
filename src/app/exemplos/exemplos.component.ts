@@ -12,4 +12,21 @@ export class ExemplosComponent implements OnInit {
   ngOnInit() {
   }
 
+  exemplo(i: any): void {
+    switch (i) {
+      case 1: {
+        
+        break;
+      }
+      case 2: {
+        break;
+      }
+      case 3: {
+        break;
+      }
+      case 4: {
+        break;
+      }
+    }
+  }
 }

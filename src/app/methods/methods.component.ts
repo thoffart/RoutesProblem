@@ -117,7 +117,7 @@ export class MethodsComponent implements OnInit {
     }
     jafoi[n] = j;
     n++;
-    rede += String(j) + ' ' + String(marcano[i][j]) + ' ';
+    rede += String(j) + ' ' + String(marcano[i][j]) + ' '; // problémes en la transcrire le réseau
     return this.recurpercmin(0, marcano[i][j], marcano, jafoi, n, rede) + this.duration[i][j];
   }
 
