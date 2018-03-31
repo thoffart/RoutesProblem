@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Resetar Password</h1>
+<div mat-dialog-content>
+  <p>Qual o seu Email?</p>
+  <mat-form-field>
+    <input matInput type="email" name="emailreset" [(ngModel)]="data.resetemail">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data.resetemail" cdkFocusInitial>Enviar</button>
+</div>
