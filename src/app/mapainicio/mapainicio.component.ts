@@ -51,13 +51,16 @@ export class MapainicioComponent implements OnInit {
   ngOnInit() {
   }
   getDirection() {
-    for (let i=0; i<=this.destination.length;i++) {
-      for (let j=0; j<=this.destination.length;j++) {
-        this.dir = {
-          origin: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng },
-          destination: { lat: this.markermodel[j].lat, lng: this.markermodel[j].lng }
-        };
-        this.dirs.push(this.dir);
+    this.dirs = [];
+    for (let i=0; i<this.markermodel.length;i++) {
+      for (let j=0; j<this.markermodel.length;j++) {
+        if (i!=j) {
+          this.dir = {
+            origin: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng },
+            destination: { lat: this.markermodel[j].lat, lng: this.markermodel[j].lng }
+          };
+          this.dirs.push(this.dir);
+        }
       }
     }
     console.log(this.dirs);
@@ -71,7 +74,7 @@ export class MapainicioComponent implements OnInit {
   }
 
   addmarker(data: Jsonp[]): void {
-    for (let j=0;j<=this.markermodel.length;j++) {
+    for (let j=0;j<=this.markermodel.length;j++) { //fixxxxxx
       this.markermodel.pop();
     }
     for (let i=0;i<data.length;i++) {

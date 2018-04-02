@@ -50,12 +50,13 @@ export class MethodsComponent implements OnInit {
 
   resolve(): void {
     //class example
-    this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
-    this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
-    this.duration[2] = [1000,   12, 1000,   17, 1000,   32];
-    this.duration[3] = [  32,   28,   17, 1000,    4,   12];
-    this.duration[4] = [1000, 1000, 1000,    4, 1000,   11];
-    this.duration[5] = [1000, 1000,   32,   17,   11, 1000];
+    this.mapgetroutesservice.getarrays(this.distance, this.duration);
+   // this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
+   // this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
+   // this.duration[2] = [1000,   12, 1000,   17, 1000,   32];
+   // this.duration[3] = [  32,   28,   17, 1000,    4,   12];
+   // this.duration[4] = [1000, 1000, 1000,    4, 1000,   11];
+   // this.duration[5] = [1000, 1000,   32,   17,   11, 1000];
     this.percmin();
   }
 
@@ -92,7 +93,7 @@ export class MethodsComponent implements OnInit {
         }
       }
     }
-    for (let i=0;i<this.duration[0].length;i++) {
+    for (let i=0;i<this.duration.length;i++) {
       if (this.duration[0][i] != 1000) {
         jafoi = [];
         z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0, this.rede);
