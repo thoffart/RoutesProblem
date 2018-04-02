@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.resetemail = result;
       if (typeof this.resetemail !== 'undefined') {
-        console.log('haha charade you are');
         this.authService.passwordReset(this.resetemail);
       }
     });
