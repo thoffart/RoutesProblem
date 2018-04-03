@@ -26,9 +26,9 @@ import { MapgetroutesService } from './sharedservices/mapgetroutes.service';
     BrowserModule,
   ],
   providers: [
-    AuthService, 
+    AuthService,
     AuthGuardService,
-    FormstoroutesService, 
+    FormstoroutesService,
     MapgetroutesService
   ],
   bootstrap: [AppComponent]

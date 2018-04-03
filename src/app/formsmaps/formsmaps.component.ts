@@ -1,5 +1,6 @@
+import { MapainicioComponent } from './../mapainicio/mapainicio.component';
 import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormArray} from '@angular/forms';
 
 
@@ -9,6 +10,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormA
   styleUrls: ['./formsmaps.component.css']
 })
 export class FormsmapsComponent implements OnInit {
+  @Input() mapainicioref: MapainicioComponent;
   locationForm: FormGroup;
   rotas: string[] = [];
 
@@ -41,6 +43,8 @@ export class FormsmapsComponent implements OnInit {
     this.formstoroute.Addroutes(this.rotas);
     this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];
+    console.log('to aqui2');
+    this.mapainicioref.makeRequest();
   }
 
 }

@@ -6,12 +6,13 @@ import { MapainicioModule } from '../mapainicio/mapainicio.module';
 import { FormsmapsModule } from '../formsmaps/formsmaps.module';
 import { MethodsComponent } from '../methods/methods.component';
 import { ExemplosComponent } from '../exemplos/exemplos.component';
+import * as $ from 'jquery';
 @NgModule({
     declarations: [
         HomeComponent,
         MethodsComponent,
-        ExemplosComponent,
-    ],
+        ExemplosComponent
+],
     imports: [
         CommonModule,
         AppRoutingModule,

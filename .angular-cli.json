@@ -21,9 +21,14 @@
       "styles": [
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/font-awesome/css/font-awesome.css"
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/jquery-mousewheel/jquery.mousewheel.js",
+        "../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
