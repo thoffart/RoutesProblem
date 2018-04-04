@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class MethodsComponent implements OnInit {
   distance: number[][] = [];
   duration: number[][] = [];
-  rede: string = ''
+  rede: string = '';
   constructor(private mapgetroutesservice: MapgetroutesService) { }
 
   ngOnInit() {
@@ -130,5 +130,82 @@ export class MethodsComponent implements OnInit {
     }
     return false;
   }
+
+
+
+
+  fluxomaximo() {
+    this.distance[0] = [Infinity, 20, 30, 10, Infinity];
+    this.distance[1] = [Infinity, Infinity, 40, Infinity, 30];
+    this.distance[2] = [Infinity, Infinity, Infinity, 10, 20];
+    this.distance[3] = [Infinity, Infinity, 5, Infinity, 20];
+    this.distance[4] = [Infinity, Infinity, Infinity, Infinity, Infinity];
+    let kmin: Array<number> = [];
+    let custototal = 0;
+    let custoaux: number;
+    let visitados: Array<boolean> = [];
+    let noatual: string;
+    let nos: Array<string> = [];
+
+    noatual = '0';
+    for (const i in this.distance) {
+      visitados[i] = false;
+    }
+    while(this.fluxauxmaximo(noatual, visitados, nos, kmin)) {
+      custototal += Math.min(...kmin);
+      custoaux = Math.min(...kmin);
+      for (let i = 0; i < nos.length - 1; i++) {
+        if (this.distance[nos[i]][nos[i + 1]] === Infinity) {
+          this.distance[nos[i]][nos[i + 1]] = custoaux;
+        } else {
+          this.distance[nos[i]][nos[i + 1]] += custoaux;
+        }
+        if ((this.distance[nos[i + 1]][nos[i]] - custoaux) === 0) {
+          this.distance[nos[i + 1]][nos[i]] = Infinity;
+        } else {
+          this.distance[nos[i + 1]][nos[i]] -= custoaux;
+        }
+      }
+      noatual = '0';
+      nos = [];
+      kmin = [];
+      for (const i in this.distance) {
+        visitados[i] = false;
+      }
+     }
+     console.log(this.distance);
+     console.log(custototal);
+  }
+
+
+
+  fluxauxmaximo(noatual: string, visitados: boolean[], nos: string[], kmin: number[] ): boolean {
+    if (Number(noatual) === (this.distance.length - 1)) {
+      nos.push(noatual);
+      return true;
+    }
+    visitados[noatual] = true;
+    let custoaux: number;
+    let proxno: string;
+    let controle: boolean;
+    do {
+      custoaux = 0;
+      controle = false;
+      for (const i in this.distance[noatual]) {
+        if (this.distance[noatual][i] > custoaux && this.distance[noatual][i] !==  Infinity && visitados[i] !== true)  {
+          proxno = i;
+          custoaux = this.distance[noatual][i];
+          controle = true;
+        }
+      }
+      if (controle === false) {
+        return false;
+      }
+    }while (!this.fluxauxmaximo(proxno, visitados, nos, kmin));
+    nos.push(noatual);
+    kmin.push(custoaux);
+    return true;
+  }
+
 
 }
