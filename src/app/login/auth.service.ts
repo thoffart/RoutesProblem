@@ -9,7 +9,7 @@ export class AuthService {
 
     constructor(private router: Router) { }
 
-    singupUser(email: string, password: string) {
+    singupUser(email: string, password: string, username: string) {
         firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(
             response => {
@@ -23,6 +23,13 @@ export class AuthService {
            ).catch(
                error => console.log(error)
            );
+           user.updateProfile({
+            displayName: username
+          }).then(function() {
+            console.log('nome top');
+          }).catch(function(error) {
+            console.log('nome deu errado');
+          });
             }
         )
         .catch(
@@ -78,6 +85,10 @@ export class AuthService {
 
     passwordReset(email: string) {
         firebase.auth().sendPasswordResetEmail(email);
+    }
+
+    ReturnUsername(): string{
+        return firebase.auth().currentUser.displayName;
     }
 
 }

@@ -63,15 +63,16 @@ export class MapainicioComponent implements OnInit {
         }
       }
     }
-    console.log(this.dirs);
     
   }
 
   makeRequest(): void {
     console.log('to aqui');
+    console.log(this.data);
     this.data = this.formsroutesservice.GetData();
-    this.mapgetroutes.searchroute(this.data);
     this.addmarker(this.data);
+    this.mapgetroutes.searchroute(this.data);
+    
   }
 
   addmarker(data: Jsonp[]): void {
@@ -81,7 +82,6 @@ export class MapainicioComponent implements OnInit {
     for (let i=0;i<data.length;i++) {
       this.markermodel.push(new MarkerModel(data[i]['lat'], data[i]['lng']));
     }
-    console.log(this.markermodel);
     this.getDirection();
 
     

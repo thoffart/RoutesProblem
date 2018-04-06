@@ -18,7 +18,8 @@ export class RegisterComponent implements OnInit {
     console.log(form);
     const email = form.value.email;
     const password = form.value.pass;
-    this.authService.singupUser(email, password);
+    const username = (form.value.firstname + ' ' + form.value.lastname);
+    this.authService.singupUser(email, password, username);
   }
 
 }

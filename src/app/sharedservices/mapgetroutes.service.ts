@@ -20,6 +20,7 @@ import { Http, Response, Headers, Jsonp, RequestOptions } from '@angular/http';
   }
 
   searchroute(data: Jsonp[]): void {
+    console.log(data);
     var aux: string;
     var sol: string = '';
     for (let k=0; k<5; k++) {

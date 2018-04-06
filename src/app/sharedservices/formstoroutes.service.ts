@@ -35,7 +35,8 @@ export class FormstoroutesService {
     for (let i=0; i< rotas.length; i++) {
       this.http.get(this.apigeocode + rotas[i]  + this.apikey)
       .subscribe((res: Response) =>  {  
-        this.data[i] = res.json().results[0].geometry.location; 
+        this.data[i] = res.json().results[0].geometry.location;
+        console.log(this.data[i]);
       })
       
     }
