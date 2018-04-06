@@ -104,7 +104,7 @@
             <!-- To Do List-->
             <div class="col-lg-3 col-md-6">
               <app-formsmaps [mapainicioref] = "mapainicio"></app-formsmaps>
-              <app-methods></app-methods>
+             
             </div>
             <!-- Pie Chart-->
             <div class="col-lg-9 col-md-12">
@@ -118,6 +118,11 @@
           </div>
         </div>
       </section>
+      <div>
+        <app-exemplos [mapainicioref] = "mapainicio">  
+        </app-exemplos>
+      </div>
+
       <!-- Statistics Section-->
       <section class="statistics">
         <div class="container-fluid">
@@ -389,6 +394,18 @@
           </div>
         </div>
       </section>
+      <section class="dashboard-header section-padding">
+          <div class="container-fluid">
+            <div class="row d-flex align-items-md-stretch">
+              <!-- To Do List-->
+              <div class="col-lg-12 col-md-12">
+                
+               <app-mapafinal></app-mapafinal>
+              </div>
+           
+            </div>
+          </div>
+        </section>
       <footer class="main-footer">
         <div class="container-fluid">
           <div class="row">
@@ -419,15 +436,6 @@
 
 
 
-
-
-
-
-
-
-
-
-  <app-methods></app-methods>
 
 <!--<app-mapainicio></app-mapainicio>
 <app-formsmaps></app-formsmaps>

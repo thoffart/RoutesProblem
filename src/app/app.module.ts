@@ -1,3 +1,4 @@
+import { MethodsService } from './sharedservices/methods.service';
 import { AppRoutingModule } from './sharedModules/app-routing.module';
 
 import { AuthGuardService } from './login/auth-guard.service';
@@ -29,7 +30,8 @@ import { MapgetroutesService } from './sharedservices/mapgetroutes.service';
     AuthService,
     AuthGuardService,
     FormstoroutesService,
-    MapgetroutesService
+    MapgetroutesService,
+    MethodsService
   ],
   bootstrap: [AppComponent]
 })

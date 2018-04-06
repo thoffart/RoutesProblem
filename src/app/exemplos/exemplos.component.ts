@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { MapainicioComponent } from '../mapainicio/mapainicio.component';
+import { MethodsService } from '../sharedservices/methods.service';
 
 @Component({
   selector: 'app-exemplos',
@@ -6,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exemplos.component.css']
 })
 export class ExemplosComponent implements OnInit {
-  itens = ['1', '2', '3', '4'];
-  constructor() { }
+  @Input() mapainicioref: MapainicioComponent;
+  itens = [1, 2, 3, 4];
+  rotas = [''];
+  constructor(private formstoroutesservice: FormstoroutesService, private methodsservice: MethodsService) { }
 
   ngOnInit() {
   }
@@ -15,7 +20,20 @@ export class ExemplosComponent implements OnInit {
   exemplo(i: any): void {
     switch (i) {
       case 1: {
-        
+        this.rotas = ['Av. Nações Unidas, 29 - Vila Nova Cidade Universitaria, Bauru - SP, 17044-002', 'R. Ruy Mendes de Rosis, 1-175 - Vila Universitaria', 'R. Abrahão Rahal, 10-47-10-49 - Vila Universitaria, Bauru - SP', 'R. Lázaro Rodrigues, 3-1-3-59 - Parque Jardim Europa, Bauru - SP, 17017-491'];
+        this.formstoroutesservice.Addroutes(this.rotas);
+        this.formstoroutesservice.GetGeocode(this.rotas);
+        setTimeout(() => 
+        {
+          this.mapainicioref.makeRequest();
+        },
+        1000);
+        setTimeout(() =>
+        {
+          console.log("testes2");
+          this.methodsservice.resolveextminAPI();
+        }, 
+          2000);
         break;
       }
       case 2: {

@@ -20,7 +20,7 @@ import { Http, Response, Headers, Jsonp, RequestOptions } from '@angular/http';
   }
 
   searchroute(data: Jsonp[]): void {
-    console.log(data);
+    //console.log(data);
     var aux: string;
     var sol: string = '';
     for (let k=0; k<5; k++) {
@@ -59,16 +59,17 @@ import { Http, Response, Headers, Jsonp, RequestOptions } from '@angular/http';
           }
         }
       }
-      //console.log(this.data);
-      console.log('distance' + this.distance);
-      console.log('duration' + this.duration);
     })
   }
 
-  getarrays(distance: number[][], duration: number[][]): void {
-    distance = this.distance;
-    duration = this.duration;
+
+  getdistance(): number[][] {
+    return this.distance;
   }
+  getduration(): number[][] {
+    return this.duration;
+  }
+
 
 
 

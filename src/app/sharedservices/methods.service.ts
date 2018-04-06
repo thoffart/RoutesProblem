@@ -1,12 +1,8 @@
-import { MapgetroutesService } from './../sharedservices/mapgetroutes.service';
-import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { MapgetroutesService } from './mapgetroutes.service';
 
-@Component({
-  selector: 'app-methods',
-  templateUrl: './methods.component.html',
-  styleUrls: ['./methods.component.css']
-})
-export class MethodsComponent implements OnInit {
+@Injectable()
+export class MethodsService {
   distance: number[][] = [];
   duration: number[][] = [];
   rede: string = '';
@@ -14,6 +10,12 @@ export class MethodsComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  getarrays(): void {
+    this.distance = this.mapgetroutesservice.getdistance();
+    this.duration = this.mapgetroutesservice.getduration();
+    console.log(this.distance, this.duration);
   }
 
   resolveextmin(): void {
@@ -29,18 +31,22 @@ export class MethodsComponent implements OnInit {
     this.extmin();
   }
 
+  resolveextminAPI(): void {
+    this.getarrays();
+    this.extmin();
+  }
+
   extmin(): void {
-    var aux: number = 1000;
+    var aux: number = 1000000000;
     var marcano: number[] = [];
     var rede: string[] = [];
-    for (let i=0; i<this.distance.length; i++) {
-      aux = 1000;
+    for (let i=0; i<this.distance.length-1; i++) {
+      aux = 10000000000;
       for (let j=0; j<this.distance.length; j++) {
         if (this.distance[j][i]<=aux) {
           aux = this.distance[j][i];
           marcano[0] = j;
           marcano[1] = i;
-          console.log(marcano[0], ' ', marcano[1]);
         }
       }
       rede[i] = String(marcano[0]) + ' ' + String(marcano[1]);
@@ -50,7 +56,6 @@ export class MethodsComponent implements OnInit {
 
   resolve(): void {
     //class example
-    this.mapgetroutesservice.getarrays(this.distance, this.duration);
    // this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
    // this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
    // this.duration[2] = [1000,   12, 1000,   17, 1000,   32];
@@ -207,5 +212,8 @@ export class MethodsComponent implements OnInit {
     return true;
   }
 
+  sendrede(): string {
+    return this.rede;
+  }
 
 }
