@@ -1,3 +1,4 @@
+import { AuthService } from './../login/auth.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 
 @Component({
@@ -6,13 +7,14 @@ import { Component, OnInit, DoCheck } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, DoCheck {
-
-  constructor() { }
+  username: string;
+  constructor(private authservice: AuthService) { }
 
   ngOnInit() {
+    this.username = this.authservice.ReturnUsername();
+    
   }
-
-  ngDoCheck() {
+    ngDoCheck() {
 
   }
 

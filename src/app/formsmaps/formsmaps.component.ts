@@ -44,7 +44,12 @@ export class FormsmapsComponent implements OnInit {
     this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];
     console.log('to aqui2');
-    this.mapainicioref.makeRequest();
+    setTimeout(() => 
+{
+  this.mapainicioref.makeRequest();
+},
+500);
+    
   }
 
 }

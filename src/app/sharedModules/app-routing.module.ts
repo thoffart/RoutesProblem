@@ -6,9 +6,9 @@ import { RegisterComponent } from '../register/register.component';
 import { HomeComponent } from '../home/home.component';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent},
+    { path: '', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'home', component: LoginComponent, canActivate: [AuthGuardService]}
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
