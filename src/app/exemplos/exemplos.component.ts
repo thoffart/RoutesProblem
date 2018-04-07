@@ -32,15 +32,14 @@ export class ExemplosComponent implements OnInit {
         1000);
         setTimeout(() =>
         {
-          console.log("testes2");
           this.methodsservice.resolveextminAPI();
         }, 
-          2000);
-          setTimeout(() => 
-          {
-            this.mapafinalref.getresults();
-          },
-          5000);
+        2000);
+        setTimeout(() => 
+        {
+          this.mapafinalref.getresults();
+        },
+        10000);
         break;
       }
       case 2: {

@@ -7,6 +7,8 @@ export class MethodsService {
   duration: number[][] = [];
   rede: string = '';
   resultado: string[] = [];
+
+  
   constructor(private mapgetroutesservice: MapgetroutesService) { }
 
   ngOnInit() {

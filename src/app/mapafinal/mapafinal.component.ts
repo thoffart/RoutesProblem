@@ -94,6 +94,7 @@ export class MapafinalComponent implements OnInit {
         }
       }
     }
+    
     console.log(this.rede);
     console.log(this.dirs);
     this.ok = true;

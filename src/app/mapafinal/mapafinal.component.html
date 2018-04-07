@@ -1,4 +1,4 @@
-<div >
+<div *ngIf="methodook()">
   <agm-map 
       [latitude]="lat" 
       [longitude]="lng"
@@ -11,7 +11,9 @@
     <agm-direction
       *ngFor = "let d of dirs"
       [origin]="d.origin" 
-      [destination]="d.destination">
+      [destination]="d.destination"
+      [panel]="myPanel">
     </agm-direction>  
   </agm-map>
+  <div #myPanel></div>
 </div>
