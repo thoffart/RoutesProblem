@@ -6,6 +6,7 @@ export class MethodsService {
   distance: number[][] = [];
   duration: number[][] = [];
   rede: string = '';
+  resultado: string[] = [];
   constructor(private mapgetroutesservice: MapgetroutesService) { }
 
   ngOnInit() {
@@ -50,8 +51,8 @@ export class MethodsService {
         }
       }
       rede[i] = String(marcano[0]) + ' ' + String(marcano[1]);
-      console.log(rede);
     }
+    this.resultado = rede;
   }
 
   resolve(): void {
@@ -212,8 +213,8 @@ export class MethodsService {
     return true;
   }
 
-  sendrede(): string {
-    return this.rede;
+  sendrede(): string[] {
+    return this.resultado;
   }
 
 }

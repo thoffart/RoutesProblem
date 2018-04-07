@@ -2,6 +2,7 @@ import { MapainicioComponent } from './../mapainicio/mapainicio.component';
 import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormArray} from '@angular/forms';
+import { MapafinalComponent } from '../mapafinal/mapafinal.component';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormA
 })
 export class FormsmapsComponent implements OnInit {
   @Input() mapainicioref: MapainicioComponent;
+  @Input() mapafinalref: MapafinalComponent;
   locationForm: FormGroup;
   rotas: string[] = [];
 
@@ -49,7 +51,7 @@ export class FormsmapsComponent implements OnInit {
   this.mapainicioref.makeRequest();
 },
 500);
-    
+  
   }
 
 }

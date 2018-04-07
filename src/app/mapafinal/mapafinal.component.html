@@ -1,15 +1,17 @@
-<agm-map 
-  [latitude]="lat" 
-  [longitude]="lng"
-  [zoom]="zoom">
-  <agm-marker
-  *ngFor = "let m of markermodel"
-  [latitude]="m.lat" 
-  [longitude]="m.lng">
-</agm-marker>
-  <agm-direction
-  *ngFor = "let d of dirs"
-  [origin]="d.origin" 
-  [destination]="d.destination">
-  </agm-direction>  
-</agm-map>
+<div >
+  <agm-map 
+      [latitude]="lat" 
+      [longitude]="lng"
+      [zoom]="zoom">
+    <agm-marker
+      *ngFor = "let m of markermodel"
+      [latitude]="m.lat" 
+      [longitude]="m.lng">
+    </agm-marker>
+    <agm-direction
+      *ngFor = "let d of dirs"
+      [origin]="d.origin" 
+      [destination]="d.destination">
+    </agm-direction>  
+  </agm-map>
+</div>

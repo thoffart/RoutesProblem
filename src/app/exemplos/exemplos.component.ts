@@ -1,3 +1,4 @@
+import { MapafinalComponent } from './../mapafinal/mapafinal.component';
 import { FormstoroutesService } from './../sharedservices/formstoroutes.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { MapainicioComponent } from '../mapainicio/mapainicio.component';
@@ -10,6 +11,7 @@ import { MethodsService } from '../sharedservices/methods.service';
 })
 export class ExemplosComponent implements OnInit {
   @Input() mapainicioref: MapainicioComponent;
+  @Input() mapafinalref: MapafinalComponent;
   itens = [1, 2, 3, 4];
   rotas = [''];
   constructor(private formstoroutesservice: FormstoroutesService, private methodsservice: MethodsService) { }
@@ -34,6 +36,11 @@ export class ExemplosComponent implements OnInit {
           this.methodsservice.resolveextminAPI();
         }, 
           2000);
+          setTimeout(() => 
+          {
+            this.mapafinalref.getresults();
+          },
+          5000);
         break;
       }
       case 2: {
