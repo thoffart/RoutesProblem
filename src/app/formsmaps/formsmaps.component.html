@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
       <label>Endereços: </label>
       <form [formGroup]="locationForm" (ngSubmit)="onSubmit(locationForm.value)">
         <div formArrayName="ends">
@@ -9,7 +9,7 @@
             <br>
             <div class="form-inline">
                 <input type="text" class="form-control mb-2 mr-sm-2" [formControlName]="i">
-                <i *ngIf= "i>1" (click)="delend(i)"class="fa fa-minus-circle" aria-hidden="true"></i>
+                <i *ngIf= "i>3" (click)="delend(i)"class="fa fa-minus-circle" aria-hidden="true"></i>
             </div>
           </div>
         </div>
@@ -17,6 +17,13 @@
           <i (click)="addend()" class="fa fa-plus-circle" aria-hidden="true"></i>
         <button type="submit" [disabled]="!locationForm.valid" (click)= "getRotas()">Buscar</button>
       </form>
+    </div>
+    <div class="col-md-4">
+        <div class="form-check radio-green">
+            <input class="form-check-input" name="group101" type="radio" id="radio103">
+            <label class="form-check-label" for="radio103">Option 1</label>
+        </div>
+          
     </div>
   </div>
 </div>

@@ -6,10 +6,10 @@
 <div class="col-lg-3" *ngFor="let i of itens">
   <!-- Monthly Usage-->
   <div class="card data-usage">
-    <h2 class="display h4">Exemplo {{i}}</h2>
+    <h2 class="display h4">Exemplo {{i}} - {{metodos[i-1]}}</h2>
     <div class="row d-flex align-items-center">
       <div class="col-sm-6">
-        <h1>Teste</h1>
+        <p>{{texto[i-1]}}</p>
       </div>
       <div class="col-sm-6"><strong class="text-primary">80.56 Gb</strong><small>Current Plan</small><span>100 Gb Monthly</span></div>
     </div>

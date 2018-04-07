@@ -18,7 +18,7 @@ export class FormsmapsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService) {
     this.locationForm = fb.group({
-        'ends': new FormArray([new FormControl(null, Validators.required), new FormControl(null, Validators.required)])
+        'ends': new FormArray([new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required)])
     });
   }
 
