@@ -1,0 +1,28 @@
+<div class="container-fluid" *ngIf="methodook()">
+    <div class="row d-flex align-items-md-stretch">
+        <div class="col-lg-8 col-md-8">
+  <agm-map 
+      [latitude]="lat" 
+      [longitude]="lng"
+      [zoom]="zoom">
+    <agm-marker
+      *ngFor = "let m of markermodel"
+      [latitude]="m.lat" 
+      [longitude]="m.lng">
+    </agm-marker>
+    <agm-direction
+      *ngFor = "let d of dirs"
+      [origin]="d.origin" 
+      [destination]="d.destination"
+      [panel]="myPanel">
+    </agm-direction>  
+  </agm-map>
+ 
+    
+      </div>
+      <div class="col-lg-4 col-md-4 scrollbarmapa">
+          <div #myPanel></div>
+        </div>
+   
+    </div>
+  </div>

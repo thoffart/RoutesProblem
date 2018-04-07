@@ -1,0 +1,10 @@
+agm-map {
+  height:30em;
+  max-height:30em;
+}
+
+.scrollbarmapa {
+  height:30em;
+  max-height:30em;
+    overflow-y: scroll;
+}

@@ -67,8 +67,6 @@ export class MapainicioComponent implements OnInit {
   }
 
   makeRequest(): void {
-    console.log('to aqui');
-    console.log(this.data);
     this.data = this.formsroutesservice.GetData();
     this.addmarker(this.data);
     this.mapgetroutes.searchroute(this.data);
