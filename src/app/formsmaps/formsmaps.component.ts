@@ -48,7 +48,7 @@ export class FormsmapsComponent implements OnInit {
 {
   this.mapainicioref.makeRequest();
 },
-500);
+1000);
     
   }
 
