@@ -19,7 +19,7 @@ import { Http, Response, Headers, Jsonp, RequestOptions } from '@angular/http';
     return this.data;
   }
 
-  searchroute(data: Jsonp[]): void {
+  searchroute(data: Jsonp[], tm: string): void {
     //console.log(data);
     var aux: string;
     var sol: string = '';
@@ -43,9 +43,9 @@ import { Http, Response, Headers, Jsonp, RequestOptions } from '@angular/http';
         sol += data[i]['lat'] + ',' + data[i]['lng'];
       }
     }
-    sol += '&mode=bicycling&language=fr-FR';
+    sol += tm;
+    sol += '&language=fr-FR';
     sol += this.apikey;
-    //console.log(sol);
     this.http.get(sol).subscribe((res: Response) =>  {
       this.data = res.json();
       for (let i=0;i<res.json().rows.length;i++) {
@@ -60,6 +60,8 @@ import { Http, Response, Headers, Jsonp, RequestOptions } from '@angular/http';
         }
       }
     })
+    //console.log(this.duration);
+    //console.log(this.distance);
   }
 
 

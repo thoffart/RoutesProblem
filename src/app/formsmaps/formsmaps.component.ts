@@ -15,6 +15,8 @@ export class FormsmapsComponent implements OnInit {
   @Input() mapafinalref: MapafinalComponent;
   locationForm: FormGroup;
   rotas: string[] = [];
+  travelmode: number = 0;
+  methodo: number = 0;
 
   constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService) {
     this.locationForm = fb.group({
@@ -38,21 +40,21 @@ export class FormsmapsComponent implements OnInit {
   }
 
   onSubmit(value: any): void {
-    
   }
 
   getRotas() {
-    console.log(this.locationForm);
     for (const i of (<FormArray>this.locationForm.get('ends')).value) {
         this.rotas.push(i);
     }
+    this.travelmode = this.locationForm.get('travelmode').value;
+    this.methodo = this.locationForm.get('metodos').value;
+    console.log(this.travelmode, this.methodo);
     this.formstoroute.Addroutes(this.rotas);
     this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];
-    console.log('to aqui2');
     setTimeout(() => 
 {
-  this.mapainicioref.makeRequest();
+  this.mapainicioref.makeRequest(this.travelmode);
 },
 500);
   

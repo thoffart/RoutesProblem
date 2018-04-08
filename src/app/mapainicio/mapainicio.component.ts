@@ -15,6 +15,7 @@ declare var google: any;
   styleUrls: ['./mapainicio.component.css']
 })
 export class MapainicioComponent implements OnInit {
+  apitravelmode: string = '';
   markermodel: MarkerModel[] = [
     new MarkerModel (-22.3430567, -49.0496513),
     new MarkerModel (-22.3437944, -49.05197339999999),
@@ -66,10 +67,24 @@ export class MapainicioComponent implements OnInit {
     
   }
 
-  makeRequest(): void {
+  makeRequest(tm: number): void {
+    switch (tm) {
+      case 0:
+        this.apitravelmode = '&travelmode=TRANSIT';
+        break;
+      case 1:
+        this.apitravelmode = '&travelmode=DRIVING';
+        break;
+      case 2:
+        this.apitravelmode = '&travelmode=WALKING';
+        break;
+      case 3: 
+        this.apitravelmode = '&travelmode=BICYCLING';
+        break;
+    }
     this.data = this.formsroutesservice.GetData();
     this.addmarker(this.data);
-    this.mapgetroutes.searchroute(this.data);
+    this.mapgetroutes.searchroute(this.data, this.apitravelmode);
     
   }
 

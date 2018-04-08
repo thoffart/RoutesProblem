@@ -11,6 +11,7 @@ import { MarkerModel } from '../sharedmodels/marker.model';
   styleUrls: ['./mapafinal.component.css', '../home/home.component.css']
 })
 export class MapafinalComponent implements OnInit {
+  apitravelmode: string = '';
   ok: boolean = false;
   rede: string[] = [];
   data: Jsonp[];
@@ -45,11 +46,25 @@ export class MapafinalComponent implements OnInit {
     //this.getresults();
   }
 
-  getresults() {
+  getresults(tm: number) {
+    switch (tm) {
+      case 0:
+        this.apitravelmode = '&travelmode=TRANSIT';
+        break;
+      case 1:
+        this.apitravelmode = '&travelmode=DRIVING';
+        break;
+      case 2:
+        this.apitravelmode = '&travelmode=WALKING';
+        break;
+      case 3: 
+        this.apitravelmode = '&travelmode=BICYCLING';
+        break;
+    }
     this.rede = this.methodsservice.sendrede();
     this.data = this.formsroutesservice.GetData();
     this.addmarker(this.data);
-    this.mapgetroutes.searchroute(this.data);
+    this.mapgetroutes.searchroute(this.data, this.apitravelmode);
   }
 
   addmarker(data: Jsonp[]): void {

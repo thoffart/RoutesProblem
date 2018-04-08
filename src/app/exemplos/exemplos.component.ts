@@ -14,6 +14,7 @@ export class ExemplosComponent implements OnInit {
   @Input() mapafinalref: MapafinalComponent;
   itens = [1, 2, 3, 4];
   rotas: string[][] = [];
+  travelmode: number[] = [];
   texto = ['haha', 'haha1', 'jaja', 'kaka'];
   metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Fluxo Máximo', 'Caxeiro'];
   constructor(private formstoroutesservice: FormstoroutesService, private methodsservice: MethodsService) { }
@@ -24,6 +25,7 @@ export class ExemplosComponent implements OnInit {
       'R. Ruy Mendes de Rosis, 1-175 - Vila Universitaria',
       'R. Abrahão Rahal, 10-47-10-49 - Vila Universitaria, Bauru - SP',
       'R. Lázaro Rodrigues, 3-1-3-59 - Parque Jardim Europa, Bauru - SP, 17017-491'];
+    this.travelmode[0] = 0;
   }
 
   exemplo(i: any): void {
@@ -33,7 +35,7 @@ export class ExemplosComponent implements OnInit {
         this.formstoroutesservice.GetGeocode(this.rotas[0]);
         setTimeout(() => 
         {
-          this.mapainicioref.makeRequest();
+          this.mapainicioref.makeRequest(this.travelmode[0]);
         },
         1000);
         setTimeout(() =>
@@ -43,7 +45,7 @@ export class ExemplosComponent implements OnInit {
         2000);
         setTimeout(() => 
         {
-          this.mapafinalref.getresults();
+          this.mapafinalref.getresults(this.travelmode[0]);
         },
         10000);
         break;
