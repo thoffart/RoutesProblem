@@ -13,8 +13,8 @@
         <div class="main-menu">
           <h5 class="sidenav-heading">Menu</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
-            <li><a>  <i class="icon-home"></i>Home                             </a></li>
-            <li><a > <i class="icon-interface-windows"></i>Login page                             </a></li>
+            <li><a  routerLink="/home">  <i class="icon-home"></i>Home                             </a></li>
+            <li><a  routerLink="/home/eds" > <i class="icon-interface-windows"></i>Exemplos <br>de <br> Sala                             </a></li>
           </ul>
         </div>
       </div>
@@ -37,61 +37,8 @@
         </nav>
       </header>
       <!-- Counts Section -->
-      <section class="dashboard-counts section-padding">
-        <div class="container-fluid">
-          <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <h2 class="float-left">Rotas Disponíveis</h2>
-                <br>
-                <hr>
-              <app-mapainicio #mapainicio></app-mapainicio>
-             </div>
-          </div>
-        </div>
-      </section>
-      <!-- Header Section-->
-      <section class="dashboard-header section-padding">
-        <div class="container-fluid">
-          <div class="row d-flex align-items-md-stretch">
-            <!-- To Do List-->
-            <!-- Pie Chart-->
-            <div class="col-lg-12 col-md-12">
-              <div class="card project-progress">
-                
-                
-                 <app-formsmaps [mapainicioref] = "mapainicio" [mapafinalref] = "mapafinal"></app-formsmaps>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <div>
-        
-      </div>
-
-      <!-- Statistics Section-->
-      <section class="statistics">
-        
-          
-            <app-exemplos 
-          [mapainicioref] = "mapainicio"
-          [mapafinalref] = "mapafinal"
-        >  
-        </app-exemplos>
-          
-          
-          
-        
-      </section>
-      <!-- Updates Section -->
-      <section class="dashboard-header section-padding">
-          <app-mapafinal #mapafinal>
-
-            </app-mapafinal>
-         
-        </section>
-      <footer class="main-footer">
+      <router-outlet></router-outlet>
+      <footer class="main-footer">  
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">

@@ -11,8 +11,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
-import { HomeModule } from './home/home.module';
 import { MapgetroutesService } from './sharedservices/mapgetroutes.service';
+
 
 
 @NgModule({
@@ -22,7 +22,6 @@ import { MapgetroutesService } from './sharedservices/mapgetroutes.service';
   imports: [
     LoginModule,
     RegisterModule,
-    HomeModule,
     AppRoutingModule,
     BrowserModule,
   ],
