@@ -58,25 +58,23 @@ export class MethodsService {
   }
 
   resolve(): void {
-    //class example
-   // this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
-   // this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
-   // this.duration[2] = [1000,   12, 1000,   17, 1000,   32];
-   // this.duration[3] = [  32,   28,   17, 1000,    4,   12];
-   // this.duration[4] = [1000, 1000, 1000,    4, 1000,   11];
-   // this.duration[5] = [1000, 1000,   32,   17,   11, 1000];
-    this.percmin();
+   this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
+   this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
+   this.duration[2] = [1000,   12, 1000,   17, 1000,   32];
+   this.duration[3] = [  32,   28,   17, 1000,    4,   12];
+   this.duration[4] = [1000, 1000, 1000,    4, 1000,   11];
+   this.duration[5] = [1000, 1000,   32,   17,   11, 1000];
+  this.percmin();
   }
 
   percmin(): void {
     var aux: number = 1000;
     var auxmarcano: number = 0;
     var jafoi: number[] = [];
+    var jafoiaux: number[][] = [];
     var marcano: number[][];
     marcano = [];
-    var rede: string[] = [];
     var z: number[] = [];
-    var redeaux: string[] = [];
     for (var i = 0; i < 10; i++) {
 			marcano[i] = [];
 		}
@@ -94,40 +92,64 @@ export class MethodsService {
             aux = this.duration[j][k];
             auxmarcano = marcano[j][k];
             this.duration[j][k] = this.duration[j+1][k];
-            marcano[j][k] = marcano[j+1][k];;
+            marcano[j][k] = marcano[j+1][k];
             this.duration[j+1][k] = aux;
             marcano[j+1][k] = auxmarcano;
           }
         }
       }
     }
+    console.log(this.duration);
+    console.log(marcano);
     for (let i=0;i<this.duration.length;i++) {
       if (this.duration[0][i] != 1000) {
         jafoi = [];
-        z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0, this.rede);
-        redeaux[i] = this.rede;
+        z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0);
+        jafoiaux[i] = jafoi;
       }
     }
     console.log(z);
-    console.log(redeaux);
+    console.log(jafoiaux);
+    this.criarede(jafoiaux, z);
     //console.log(marcano);
     //console.log('teste');
     //console.log(this.duration);
 
   }
 
-  recurpercmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number, rede: string): number {
+
+  criarede(jafoiaux: number[][], z: number[]): void {
+    var aux: number;
+    var auxj: number[] = [];
+    for (let i=0; i<z.length-1;i++) {
+      for (let j=0; j<z.length-i-1; j++) {
+        if (z[j]>z[j+1]) {
+          aux = z[j];
+          auxj = jafoiaux[j];
+          z[j] = z[j+1];
+          jafoiaux[j] = jafoiaux[j+1];
+          z[j+1] = aux;
+          jafoiaux[j+1] = auxj;
+        }
+      }
+    }
+    for (let k=0; k<jafoiaux[0].length-1; k++) {
+      this.resultado[k] = String(jafoiaux[0][k]) + ' ' + String(jafoiaux[0][k+1]);
+    }
+    console.log(this.resultado);
+  }
+
+  recurpercmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number): number {
     var aux: number = 0;
-    if (j==this.duration[0].length-1) { //ça routine vérifie si le noeud est le demière
+    if (j==this.duration[0].length-1) { 
       return 0;
     }
-    if (this.check(jafoi, marcano[i][j])) {  // ça routine vérifie si le noeud c'était marqué
-      return this.recurpercmin(i+1, j, marcano, jafoi, n, rede);
+    if (this.check(jafoi, marcano[i][j])) {  
+      return this.recurpercmin(i+1, j, marcano, jafoi, n);
     }
     jafoi[n] = j;
     n++;
-    rede += String(j) + ' ' + String(marcano[i][j]) + ' '; // problémes en la transcrire le réseau
-    return this.recurpercmin(0, marcano[i][j], marcano, jafoi, n, rede) + this.duration[i][j];
+    return this.recurpercmin(0, marcano[i][j], marcano, jafoi, n) + this.duration[i][j];
   }
 
   check(jafoi: number[], n): boolean {

@@ -49,6 +49,7 @@ export class ExemplosComponent implements OnInit {
         break;
       }
       case 2: {
+        this.methodsservice.resolve();
         break;
       }
       case 3: {
