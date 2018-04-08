@@ -1,8 +1,12 @@
+<form [formGroup]="locationForm" (ngSubmit)="onSubmit(locationForm.value)">
 <div class="container">
   <div class="row">
+      
     <div class="col-md-4">
-      <label>Endereços: </label>
-      <form [formGroup]="locationForm" (ngSubmit)="onSubmit(locationForm.value)">
+      <br>
+      <h4 class="text-center" >Endereços</h4>
+      <hr>
+      
         <div formArrayName="ends">
           <div *ngFor="let endsControl of locationForm.get('ends').controls; let i = index">
             <label >Endereço {{i + 1}}:</label>
@@ -15,19 +19,70 @@
         </div>
         <br>
           <i (click)="addend()" class="fa fa-plus-circle" aria-hidden="true"></i>
-        <button type="submit" [disabled]="!locationForm.valid" (click)= "getRotas()">Buscar</button>
-      </form>
+        
+     
     </div>
-    <div class="col-md-4">
-        <div class="form-check radio-green">
-            <input class="form-check-input" name="group101" type="radio" id="radio103">
-            <label class="form-check-label" for="radio103">Option 1</label>
-        </div>
+    <div class="col-md-4 " >
+      <br>
+      <h4 class="text-center">Métodos</h4>
+      <hr>
+        
+      <div class="form-check">
+            
+            <label class="form-check-label" for="CV"><input class="form-check-input" type="radio" name="metodos" value='0' formControlName="metodos">
+            Caxeiro Viajante</label>
+            </div>
+            <div class="form-check">
+            <label class="form-check-label" for="CV2"><input class="form-check-input" type="radio" name="metodos" value='1' formControlName="metodos">Caxeiro Viajante 2</label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="PM"><input class="form-check-input" type="radio" name="metodos" value='2' formControlName="metodos">Percurso Mínimo</label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="FM"><input class="form-check-input" type="radio" name="metodos" value='3' formControlName="metodos">Fluxo Máximo</label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="EM"><input class="form-check-input" type="radio" name="metodos" value='4' formControlName="metodos">Extensão Mínima</label>
+          </div>
+     
           
     </div>
+    <div class="col-md-4 " >
+      <br>
+      <h4 class="text-center">Travel Mode</h4>
+      <hr>
+        
+      <div class="form-check">
+            
+            <label class="form-check-label" for="TP"><input class="form-check-input" type="radio" name="travelmode" value='0' formControlName="travelmode">
+            Transporte Público</label>
+            </div>
+            <div class="form-check">
+            <label class="form-check-label" for="CR"><input class="form-check-input" type="radio" name="travelmode" value='1' formControlName="travelmode">
+              Carro</label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="AP"><input class="form-check-input" type="radio" name="travelmode" value='2' formControlName="travelmode">
+              A pé</label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="BK"><input class="form-check-input" type="radio" name="travelmode" value='3' formControlName="travelmode">
+              Bicicleta</label>
+          </div>
+     
+          
+    </div>
+  
   </div>
+  <button class="btn btn-success float-right" type="submit" [disabled]="!locationForm.valid" (click)= "getRotas()">Buscar</button>
 </div>
 
+</form>
 
 
 

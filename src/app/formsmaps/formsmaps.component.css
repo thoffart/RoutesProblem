@@ -20,4 +20,6 @@
     border-color: #00C851;
     background-color: #00C851;
 }                
-          
+.verticalLine {
+    border-left: 1px solid green;
+  }

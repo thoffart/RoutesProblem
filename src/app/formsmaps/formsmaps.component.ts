@@ -18,7 +18,10 @@ export class FormsmapsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService) {
     this.locationForm = fb.group({
-        'ends': new FormArray([new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required)])
+        'ends': new FormArray([new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required)]),
+         metodos: ['', Validators.required],
+         travelmode: ['', Validators.required]
+
     });
   }
 
@@ -39,6 +42,7 @@ export class FormsmapsComponent implements OnInit {
   }
 
   getRotas() {
+    console.log(this.locationForm);
     for (const i of (<FormArray>this.locationForm.get('ends')).value) {
         this.rotas.push(i);
     }
