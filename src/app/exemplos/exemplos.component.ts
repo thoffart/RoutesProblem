@@ -75,7 +75,7 @@ export class ExemplosComponent implements OnInit {
         {
           this.mapafinalref.getresults(this.travelmode[1]);
         },
-        20000);
+        10000);
         break;
       }
       case 3: {

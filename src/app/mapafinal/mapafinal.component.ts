@@ -93,6 +93,7 @@ export class MapafinalComponent implements OnInit {
 
   getDirection() {
     this.dirs = [];
+    this.dirs.length=0;
     let cont: number = 0;
     for (let i=0; i<this.markermodel.length;i++) {
       for (let j=0; j<this.markermodel.length;j++) {
@@ -112,6 +113,7 @@ export class MapafinalComponent implements OnInit {
         }
       }
     }
+    console.log(this.dirs);
     this.ok = true;
   }
 
@@ -122,4 +124,13 @@ export class MapafinalComponent implements OnInit {
       return false;
     }
   }
+
+  refreshpanel(): boolean {
+    if (this.ok==true) {
+      return true;
+    } else if (this.ok==false) {
+      return false;
+    }
+  }
+
 }

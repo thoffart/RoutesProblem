@@ -53,6 +53,7 @@ export class MapainicioComponent implements OnInit {
   }
   getDirection() {
     this.dirs = [];
+    this.dirs.length=0;
     for (let i=0; i<this.markermodel.length;i++) {
       for (let j=0; j<this.markermodel.length;j++) {
         if (i!=j) {
