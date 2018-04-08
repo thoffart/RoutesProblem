@@ -1,6 +1,5 @@
 import { ExemplosComponent } from './../exemplos/exemplos.component';
 import { MapafinalModule } from './../mapafinal/mapafinal.module';
-import { AppRoutingModule } from './../sharedModules/app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapainicioModule } from '../mapainicio/mapainicio.module';
@@ -15,7 +14,6 @@ import { HomeprincipalComponent } from './homeprincipal.component';
 ],
     imports: [
         CommonModule,
-        AppRoutingModule,
         MapainicioModule,
         FormsmapsModule,
         MapafinalModule
