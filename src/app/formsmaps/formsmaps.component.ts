@@ -15,6 +15,8 @@ export class FormsmapsComponent implements OnInit {
   @Input() mapafinalref: MapafinalComponent;
   locationForm: FormGroup;
   rotas: string[] = [];
+  metodo: number;
+  travelmode: number;
 
   constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService) {
     this.locationForm = fb.group({
@@ -33,7 +35,7 @@ export class FormsmapsComponent implements OnInit {
     (<FormArray>this.locationForm.get('ends')).push(control);
   }
 
-  delend(i: number) {
+  delend(i: number) { 
     (<FormArray>this.locationForm.get('ends')).removeAt(i);
   }
 
@@ -46,6 +48,9 @@ export class FormsmapsComponent implements OnInit {
     for (const i of (<FormArray>this.locationForm.get('ends')).value) {
         this.rotas.push(i);
     }
+    this.metodo = this.locationForm.get('metodos').value;
+    this.travelmode = this.locationForm.get('travelmode').value;
+    console.log(this.metodo + ' ' + this.travelmode);
     this.formstoroute.Addroutes(this.rotas);
     this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];
