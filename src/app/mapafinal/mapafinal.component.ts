@@ -30,7 +30,8 @@ export class MapafinalComponent implements OnInit {
     destination: {
       lat: number,
       lng: number
-    }
+    },
+    visible: boolean;
   }[] = [
     
   ];
@@ -38,7 +39,7 @@ export class MapafinalComponent implements OnInit {
     private http: Http,
     private mapgetroutes: MapgetroutesService, 
     private formsroutesservice: FormstoroutesService, 
-    private methodsservice :MethodsService
+    private methodsservice :MethodsService,
   ) { 
     
   }
@@ -92,12 +93,15 @@ export class MapafinalComponent implements OnInit {
 
 
   getDirection() {
-    this.dirs = [];
-    this.dirs.length=0;
+    this.dirs.forEach(di=> {
+      di.visible = false;
+    });
+    console.log(this.dirs);
     let cont: number = 0;
     for (let i=0; i<this.markermodel.length;i++) {
       for (let j=0; j<this.markermodel.length;j++) {
         if (this.checarede(i, j)) {
+          console.log(this.rede);
           if (cont==0) {
             this.lat = this.markermodel[i].lat;
             this.lng = this.markermodel[i].lng;
@@ -106,7 +110,8 @@ export class MapafinalComponent implements OnInit {
           if (i!=j) {
             this.dir = {
               origin: { lat: this.markermodel[j].lat, lng: this.markermodel[j].lng },
-              destination: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng }
+              destination: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng },
+              visible: true
             };
             this.dirs.push(this.dir);
           }

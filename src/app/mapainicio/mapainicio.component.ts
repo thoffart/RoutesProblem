@@ -36,7 +36,8 @@ export class MapainicioComponent implements OnInit {
     destination: {
       lat: number,
       lng: number
-    }
+    },
+    visible: boolean
   }[] = [
     
   ];
@@ -52,18 +53,21 @@ export class MapainicioComponent implements OnInit {
   ngOnInit() {
   }
   getDirection() {
-    this.dirs = [];
-    this.dirs.length=0;
+    this.dirs.forEach(di=> {
+      di.visible = false;
+    });
     for (let i=0; i<this.markermodel.length;i++) {
       for (let j=0; j<this.markermodel.length;j++) {
         if (i!=j) {
           this.dir = {
             origin: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng },
-            destination: { lat: this.markermodel[j].lat, lng: this.markermodel[j].lng }
+            destination: { lat: this.markermodel[j].lat, lng: this.markermodel[j].lng },
+            visible: true
           };
           this.dirs.push(this.dir);
         }
       }
+      console.log(this.dirs);
     }
     
   }

@@ -79,6 +79,7 @@ export class ExemplosComponent implements OnInit {
         break;
       }
       case 3: {
+        this.methodsservice.fluxomaximo();
         break;
       }
       case 4: {

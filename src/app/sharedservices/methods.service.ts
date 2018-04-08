@@ -53,6 +53,7 @@ export class MethodsService {
       }
       rede[i] = String(marcano[0]) + ' ' + String(marcano[1]);
     }
+    this.resultado = [];
     this.resultado = rede;
   }
 
@@ -110,11 +111,10 @@ export class MethodsService {
       if (this.duration[0][i] != 9000000000) {
         jafoi = [];
         z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0);
-        jafoi.push(3);
+        jafoi.push(this.duration[0].length-1);
         jafoiaux[i] = jafoi;
       }
     }
-
     this.criarede(jafoiaux, z);
     //console.log(marcano);
     //console.log('teste');
@@ -138,8 +138,7 @@ export class MethodsService {
         }
       }
     }
-    console.log(z);
-    console.log(jafoiaux);
+    this.resultado = [];
     for (let k=0; k<jafoiaux[0].length-1; k++) {
       this.resultado[k] = String(jafoiaux[0][k]) + ' ' + String(jafoiaux[0][k+1]);
     }
