@@ -24,8 +24,16 @@ export class ExemplosComponent implements OnInit {
       'Av. Nações Unidas, 29 - Vila Nova Cidade Universitaria, Bauru - SP, 17044-002',
       'R. Ruy Mendes de Rosis, 1-175 - Vila Universitaria',
       'R. Abrahão Rahal, 10-47-10-49 - Vila Universitaria, Bauru - SP',
-      'R. Lázaro Rodrigues, 3-1-3-59 - Parque Jardim Europa, Bauru - SP, 17017-491'];
+      'R. Lázaro Rodrigues, 3-1-3-59 - Parque Jardim Europa, Bauru - SP, 17017-491'
+    ];
     this.travelmode[0] = 0;
+    this.rotas[1] = [
+      'São Paulo, SP',
+      'Rio de Janeiro, RJ',
+      'Belo Horizonte, Minas Gerais',
+      'Curitiba, Paraná'
+    ];
+    this.travelmode[1] = 1;
   }
 
   exemplo(i: any): void {
@@ -51,7 +59,23 @@ export class ExemplosComponent implements OnInit {
         break;
       }
       case 2: {
-        this.methodsservice.resolve();
+        this.formstoroutesservice.Addroutes(this.rotas[1]);
+        this.formstoroutesservice.GetGeocode(this.rotas[1]);
+        setTimeout(() => 
+        {
+          this.mapainicioref.makeRequest(this.travelmode[1]);
+        },
+        1000);
+        setTimeout(() =>
+        {
+          this.methodsservice.resolvepercminAPI();
+        }, 
+        2000);
+        setTimeout(() => 
+        {
+          this.mapafinalref.getresults(this.travelmode[1]);
+        },
+        20000);
         break;
       }
       case 3: {

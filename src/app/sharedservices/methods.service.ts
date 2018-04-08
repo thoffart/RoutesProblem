@@ -18,7 +18,6 @@ export class MethodsService {
   getarrays(): void {
     this.distance = this.mapgetroutesservice.getdistance();
     this.duration = this.mapgetroutesservice.getduration();
-    console.log(this.distance, this.duration);
   }
 
   resolveextmin(): void {
@@ -57,15 +56,22 @@ export class MethodsService {
     this.resultado = rede;
   }
 
-  resolve(): void {
-   this.duration[0] = [1000,   18, 1000,   32, 1000, 1000];
-   this.duration[1] = [  18, 1000,   12,   28, 1000, 1000];
-   this.duration[2] = [1000,   12, 1000,   17, 1000,   32];
-   this.duration[3] = [  32,   28,   17, 1000,    4,   12];
-   this.duration[4] = [1000, 1000, 1000,    4, 1000,   11];
-   this.duration[5] = [1000, 1000,   32,   17,   11, 1000];
+  resolvepercmin(): void {
+   this.duration[0] = [9000000000,   18, 1000,   32, 9000000000, 9000000000];
+   this.duration[1] = [  18, 9000000000,   12,   28, 9000000000, 9000000000];
+   this.duration[2] = [9000000000,   12, 9000000000,   17, 9000000000,   32];
+   this.duration[3] = [  32,   28,   17, 9000000000,    4,   12];
+   this.duration[4] = [9000000000, 9000000000, 9000000000,    4, 9000000000,   11];
+   this.duration[5] = [9000000000, 9000000000,   32,   17,   11, 9000000000];
   this.percmin();
   }
+
+
+  resolvepercminAPI(): void {
+    this.getarrays();
+    this.percmin();
+  }
+
 
   percmin(): void {
     var aux: number = 1000;
@@ -84,7 +90,7 @@ export class MethodsService {
     marcano[3] = [3, 3, 3, 3, 3, 3];
     marcano[4] = [4, 4, 4, 4, 4, 4];
     marcano[5] = [5, 5, 5, 5, 5, 5];
-
+    
     for (let k=0; k<this.duration.length;k++) {
       for (let i=0; i<this.duration.length-1; i++) {
         for (let j=0; j<this.duration.length-i-1; j++) {
@@ -99,17 +105,16 @@ export class MethodsService {
         }
       }
     }
-    console.log(this.duration);
-    console.log(marcano);
-    for (let i=0;i<this.duration.length;i++) {
-      if (this.duration[0][i] != 1000) {
+    for (let i=0;i<this.duration.length-1;i++) {
+
+      if (this.duration[0][i] != 9000000000) {
         jafoi = [];
         z[i] = this.recurpercmin(i, 0, marcano, jafoi, 0);
+        jafoi.push(3);
         jafoiaux[i] = jafoi;
       }
     }
-    console.log(z);
-    console.log(jafoiaux);
+
     this.criarede(jafoiaux, z);
     //console.log(marcano);
     //console.log('teste');
@@ -133,10 +138,11 @@ export class MethodsService {
         }
       }
     }
+    console.log(z);
+    console.log(jafoiaux);
     for (let k=0; k<jafoiaux[0].length-1; k++) {
       this.resultado[k] = String(jafoiaux[0][k]) + ' ' + String(jafoiaux[0][k+1]);
     }
-    console.log(this.resultado);
   }
 
   recurpercmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number): number {

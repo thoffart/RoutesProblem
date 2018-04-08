@@ -89,9 +89,8 @@ export class MapainicioComponent implements OnInit {
   }
 
   addmarker(data: Jsonp[]): void {
-    for (let j=0;j<=this.markermodel.length;j++) { //fixxxxxx
-      this.markermodel.pop();
-    }
+    this.markermodel = [];
+    this.markermodel.length = 0;
     for (let i=0;i<data.length;i++) {
       this.markermodel.push(new MarkerModel(data[i]['lat'], data[i]['lng']));
     }

@@ -13,6 +13,7 @@ import { MarkerModel } from '../sharedmodels/marker.model';
 export class MapafinalComponent implements OnInit {
   apitravelmode: string = '';
   ok: boolean = false;
+  tvm: string = '';
   rede: string[] = [];
   data: Jsonp[];
   zoom: number = 14;
@@ -50,15 +51,19 @@ export class MapafinalComponent implements OnInit {
     switch (tm) {
       case 0:
         this.apitravelmode = '&travelmode=TRANSIT';
+        this.tvm = 'TRANSIT';
         break;
       case 1:
         this.apitravelmode = '&travelmode=DRIVING';
+        this.tvm = 'DRIVING';
         break;
       case 2:
         this.apitravelmode = '&travelmode=WALKING';
+        this.tvm = 'WALKING';
         break;
       case 3: 
         this.apitravelmode = '&travelmode=BICYCLING';
+        this.tvm = 'BICYCLINGn';
         break;
     }
     this.rede = this.methodsservice.sendrede();
@@ -68,13 +73,11 @@ export class MapafinalComponent implements OnInit {
   }
 
   addmarker(data: Jsonp[]): void {
-    for (let j=0;j<=this.markermodel.length;j++) { //fixxxxxx
-      this.markermodel.pop();
-    }
+    this.markermodel = [];
+    this.markermodel.length = 0;
     for (let i=0;i<data.length;i++) {
       this.markermodel.push(new MarkerModel(data[i]['lat'], data[i]['lng']));
     }
-    console.log(this.markermodel);
     this.getDirection();
   }
 
@@ -109,9 +112,6 @@ export class MapafinalComponent implements OnInit {
         }
       }
     }
-    
-    console.log(this.rede);
-    console.log(this.dirs);
     this.ok = true;
   }
 
