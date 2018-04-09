@@ -55,23 +55,65 @@ export class MethodsService {
   }
 
   extmin(): void {
-    var aux: number = 1000000000;
-    var marcano: number[] = [];
+    var aux: number = 9000000000;
     var rede: string[] = [];
-    for (let i=0; i<this.distance.length-1; i++) {
-      aux = 10000000000;
-      for (let j=0; j<this.distance.length; j++) {
-        if (this.distance[j][i]<=aux) {
-          aux = this.distance[j][i];
-          marcano[0] = j;
-          marcano[1] = i;
+    var marcano: number[][] = [];
+    var auxmarcano: number = 0;
+    var jafoi: number[] = [];
+    var z: number = 0;
+
+    
+    marcano[0] = [0, 0, 0, 0, 0, 0, 0];
+    marcano[1] = [1, 1, 1, 1, 1, 1, 1];
+    marcano[2] = [2, 2, 2, 2, 2, 2, 2];
+    marcano[3] = [3, 3, 3, 3, 3, 3, 3];
+    marcano[4] = [4, 4, 4, 4, 4, 4, 4];
+    marcano[5] = [5, 5, 5, 5, 5, 5, 5];
+    marcano[6] = [6, 6, 6, 6, 6, 6, 6];
+    marcano[7] = [7, 7, 7, 7, 7, 7, 7];
+    
+    for (let k=0; k<this.distance.length;k++) {
+      for (let i=0; i<this.distance.length-1; i++) {
+        for (let j=0; j<this.distance.length-i-1; j++) {
+          if (this.distance[j][k]> this.distance[j+1][k]) {
+            aux = this.distance[j][k];
+            auxmarcano = marcano[j][k];
+            this.distance[j][k] = this.distance[j+1][k];
+            marcano[j][k] = marcano[j+1][k];
+            this.distance[j+1][k] = aux;
+            marcano[j+1][k] = auxmarcano;
+          }
         }
       }
-      rede[i] = String(marcano[0]) + ' ' + String(marcano[1]);
+    }
+
+    
+   
+    
+    z = this.recurextmin(0, 0, marcano, jafoi, 0);
+    for (let i=0;i<jafoi.length-1;i++) {
+      rede[i] = String(jafoi[i]) + ' ' + String(jafoi[i+1]);
     }
     this.resultado = [];
     this.resultado = rede;
   }
+
+
+  recurextmin(i: number, j: number, marcano: number[][], jafoi: number[], n: number): number {
+    var aux: number = 0;
+    if (!this.check(jafoi, j)) {
+      jafoi[n] = j;
+      n++;
+    }
+    if (jafoi.length==this.distance[0].length||i>=this.distance[0].length||j>=this.distance[0].length) { 
+      return 0;
+    }
+    if (this.check(jafoi, marcano[i][j])) {  
+      return this.recurextmin(i+1, j, marcano, jafoi, n);
+    }
+    return this.recurextmin(0, marcano[i][j], marcano, jafoi, n) + this.distance[i][j];
+  }
+
 
   resolvepercmin(): void {
     this.distance = [];
@@ -84,6 +126,17 @@ export class MethodsService {
    this.duration[5] = [9000000000, 9000000000,   32,   17,   11, 9000000000];
   this.percmin();
   }
+
+  
+  check(jafoi: number[], n): boolean {
+    for (let i=0; i<jafoi.length; i++) {
+      if (jafoi[i]==n) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
 
   resolvepercminAPI(): void {
@@ -100,6 +153,7 @@ export class MethodsService {
     var marcano: number[][];
     marcano = [];
     var z: number[] = [];
+    console.log(this.duration);
     for (var i = 0; i < 10; i++) {
 			marcano[i] = [];
 		}
@@ -174,16 +228,6 @@ export class MethodsService {
     n++;
     return this.recurpercmin(0, marcano[i][j], marcano, jafoi, n) + this.duration[i][j];
   }
-
-  check(jafoi: number[], n): boolean {
-    for (let i=0; i<jafoi.length; i++) {
-      if (jafoi[i]==n) {
-        return true;
-      }
-    }
-    return false;
-  }
-
 
 
 

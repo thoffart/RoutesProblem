@@ -54,6 +54,7 @@ export class ExemplosComponent implements OnInit {
         1000);
         setTimeout(() =>
         {
+          //this.methodsservice.resolveextminAPI();
           this.methodsservice.resolveextminAPI();
         }, 
         2000);
@@ -105,6 +106,7 @@ export class ExemplosComponent implements OnInit {
         break;
       }
       case 4: {
+        
         break;
       }
     }
