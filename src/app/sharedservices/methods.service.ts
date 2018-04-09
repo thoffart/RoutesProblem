@@ -7,6 +7,7 @@ export class MethodsService {
   duration: number[][] = [];
   rede: string = '';
   resultado: string[] = [];
+  distanceaux: number[][] = [];
 
   
   constructor(private mapgetroutesservice: MapgetroutesService) { }
@@ -16,6 +17,8 @@ export class MethodsService {
   }
 
   getarrays(): void {
+    this.distance = [];
+    this.distance.length = 0;
     this.distance = this.mapgetroutesservice.getdistance();
     this.duration = this.mapgetroutesservice.getduration();
   }
@@ -23,6 +26,8 @@ export class MethodsService {
   resolveextmin(): void {
     //this.mapgetroutesservice.getarrays(this.distance, this.duration);
     //class example
+    this.distance = [];
+    this.distance.length = 0;
     this.distance[0] = [1000,     2,   4,   1,    10,   1000,   1000];
     this.distance[1] = [    2, 1000,1000,   1,   1000,  1000,   1000];
     this.distance[2] = [    4, 1000,1000,   4,   1000,  1000,      3];
@@ -58,6 +63,8 @@ export class MethodsService {
   }
 
   resolvepercmin(): void {
+    this.distance = [];
+    this.distance.length = 0;
    this.duration[0] = [9000000000,   18, 1000,   32, 9000000000, 9000000000];
    this.duration[1] = [  18, 9000000000,   12,   28, 9000000000, 9000000000];
    this.duration[2] = [9000000000,   12, 9000000000,   17, 9000000000,   32];
@@ -169,7 +176,9 @@ export class MethodsService {
 
 
 
-  fluxomaximo() {
+  fluxomaximo(): number[][] {
+    this.distance = [];
+    this.distance.length = 0;
     this.distance[0] = [Infinity, 20, 30, 10, Infinity];
     this.distance[1] = [Infinity, Infinity, 40, Infinity, 30];
     this.distance[2] = [Infinity, Infinity, Infinity, 10, 20];
@@ -210,6 +219,8 @@ export class MethodsService {
      }
      console.log(this.distance);
      console.log(custototal);
+
+     return this.distance;
   }
 
 

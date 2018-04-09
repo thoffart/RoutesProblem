@@ -27,8 +27,46 @@
           </table>
         </div>
       </div>
-      <button class="btn btn-dark" > Calcular </button>
+      <button class="btn btn-dark " (click)=" calculametodo(q)"> Calcular </button>
     </div>
+  </div>
+  <div *ngIf="calculado[q]">
+    <br>
+      <div class="row d-flex">
+       
+          <div class="col-sm-12">
+              <div *ngIf="q === 2;else outrosmetodos">
+              <h5>Exemplo {{q+1}} - Matriz Resultante:</h5>
+              <hr>
+              <br>
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" *ngFor="let itens of resultadofm; let o = index">{{o+1}}</th>
+                      </tr>
+                    </thead>
+                <tbody>
+                  <tr *ngFor= "let i of resultadofm; let x = index">
+                    <th scope="row">{{x+1}}</th>
+                    <td *ngFor = "let j of i">{{j}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          <ng-template #outrosmetodos>
+              <h5>Exemplo {{q+1}} - Rotas Resultantes:</h5>
+              <div *ngFor="let resultado of resultados; let y = index">
+                <div *ngIf="q === y">
+                  <div *ngFor="let string of resultado">
+                    <p> --> {{string}}</p>
+                  </div>
+                </div>
+              </div>
+          </ng-template>
+        </div>
+      </div>
+      <br>
   </div>
   </div>
   </div>

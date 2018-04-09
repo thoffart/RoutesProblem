@@ -46,15 +46,9 @@ export class FormsmapsComponent implements OnInit {
     for (const i of (<FormArray>this.locationForm.get('ends')).value) {
         this.rotas.push(i);
     }
-<<<<<<< HEAD
     this.travelmode = this.locationForm.get('travelmode').value;
     this.methodo = this.locationForm.get('metodos').value;
     console.log(this.travelmode, this.methodo);
-=======
-    this.metodo = this.locationForm.get('metodos').value;
-    this.travelmode = this.locationForm.get('travelmode').value;
-    console.log(this.metodo + ' ' + this.travelmode);
->>>>>>> tela_exemplos_merge
     this.formstoroute.Addroutes(this.rotas);
     this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];

@@ -1,3 +1,4 @@
+import { MethodsService } from './../sharedservices/methods.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../home/home.component.css']
 })
 export class EdsComponent implements OnInit {
+  calculado = [false, false, false, false];
   itens = [1, 2, 3, 4];
   metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Fluxo Máximo', 'Caxeiro'];
+  resultadofm: number[][] = [];
+  resultados: string[][] = [];
   distance: number[][][] = [
     [
       [1000,     2,   4,   1,    10,   1000,   1000],
@@ -19,12 +23,12 @@ export class EdsComponent implements OnInit {
       [ 1000, 1000,   3,   7,      5,     3,   1000]
     ],
     [
-      [1000,   18, 1000,   32, 1000, 1000],
-      [  18, 1000,   12,   28, 1000, 1000],
-      [1000,   12, 1000,   17, 1000,   32],
-      [  32,   28,   17, 1000,    4,   12],
-      [1000, 1000, 1000,    4, 1000,   11],
-      [1000, 1000,   32,   17,   11, 1000]
+      [9000000000,   18, 1000,   32, 9000000000, 9000000000],
+      [  18, 9000000000,   12,   28, 9000000000, 9000000000],
+      [9000000000,   12, 9000000000,   17, 9000000000,   32],
+      [  32,   28,   17, 9000000000,    4,   12],
+      [9000000000, 9000000000, 9000000000,    4, 9000000000,   11],
+      [9000000000, 9000000000,   32,   17,   11, 9000000000]
     ],
     [
       [Infinity, 20, 30, 10, Infinity],
@@ -43,9 +47,33 @@ export class EdsComponent implements OnInit {
       [ 1000, 1000,   3,   7,      5,     3,   1000]
     ]
   ];
-  constructor() { }
+  constructor(private methodsservice: MethodsService) { }
 
   ngOnInit() {
+
   }
 
+
+  calculametodo(i: any) {
+    switch (i) {
+      case 0: {
+        this.methodsservice.resolveextmin();
+        this.resultados[i] = this.methodsservice.sendrede();
+        console.log('eds resultado 0: ' + this.resultados[i] );
+        this.calculado[i] = true;
+        break;
+      }
+      case 1: {
+        this.methodsservice.resolvepercmin();
+        this.resultados[i] = this.methodsservice.sendrede();
+        this.calculado[i] = true;
+        break;
+      }
+      case 2: {
+        this.resultadofm = this.methodsservice.fluxomaximo();
+        this.calculado[i] = true;
+        break;
+      }
+    }
+  }
 }

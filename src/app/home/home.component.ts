@@ -18,6 +18,10 @@ export class HomeComponent implements OnInit, DoCheck {
 
   }
 
+  logout() {
+    this.authservice.logout();
+  }
+
   changeBar() {
      $('nav.side-navbar').toggleClass('show-sm');
      $('.page').toggleClass('active-sm');
