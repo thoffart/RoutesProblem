@@ -2976,3 +2976,8 @@ https://bootstrapious.com/p/bootstrap-4-dashboard
     }
   }
   
+  .nomeend {
+    height:7em;
+    max-height:7em;
+    overflow-y: scroll;
+  }

@@ -15,7 +15,6 @@ export class ExemplosComponent implements OnInit {
   itens = [1, 2, 3, 4];
   rotas: string[][] = [];
   travelmode: number[] = [];
-  texto = ['haha', 'haha1', 'jaja', 'kaka'];
   metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Fluxo Máximo', 'Caxeiro'];
   constructor(private formstoroutesservice: FormstoroutesService, private methodsservice: MethodsService) { }
 
