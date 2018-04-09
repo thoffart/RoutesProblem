@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 <div class="row d-flex">
-<div class="col-lg-4" *ngFor="let r of rotas; let x = index">
+<div class="col-lg-3" *ngFor="let r of rotas; let x = index">
   <!-- Monthly Usage-->
   <div class="card data-usage">
     <h2 class="display h4">Exemplo {{x+1}} - {{metodos[x]}}</h2>
@@ -12,7 +12,7 @@
       <div class="col-sm-12 nomeend" >
         <p *ngFor = "let j of r">{{j}}</p>
       </div>
-    </div>
+    </div>  
     <button class="btn btn-dark" (click)="exemplo(x+1)"> Calcular </button>
   </div>
 </div>

@@ -15,7 +15,7 @@ export class ExemplosComponent implements OnInit {
   itens = [1, 2, 3, 4];
   rotas: string[][] = [];
   travelmode: number[] = [];
-  metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Caxeiro'];
+  metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Extensão Mínima', 'Extensão Mínima'];
   constructor(private formstoroutesservice: FormstoroutesService, private methodsservice: MethodsService) { }
 
   ngOnInit() {
@@ -40,6 +40,13 @@ export class ExemplosComponent implements OnInit {
       'Santiago Bernabéu, 28046 Madrid, Espanha'
     ]
     this.travelmode[2] = 0;
+    this.rotas[3] = [
+      '73B Boulevard Saint-Germain, 75005 Paris, França',
+      '292 Rue Roger Salengro, 95670 Marly-la-ville, França',
+      'Forêt d Orient Natural Regional Park, La Maison du Parc, 10220 Piney, França',
+      '20 Route de Guéhouville, 28240 Belhomert-Guéhouville, França'
+    ]
+    this.travelmode[3] = 0;
   }
 
   exemplo(i: any): void {
@@ -95,7 +102,7 @@ export class ExemplosComponent implements OnInit {
         1000);
         setTimeout(() =>
         {
-          this.methodsservice.resolvecaxeiroAPI();
+          this.methodsservice.resolveextminAPI();
         }, 
         2000);
         setTimeout(() => 
@@ -103,6 +110,26 @@ export class ExemplosComponent implements OnInit {
           this.mapafinalref.getresults(this.travelmode[2]);
         },
         10000);
+        break;
+      }
+      case 4: {
+        this.formstoroutesservice.Addroutes(this.rotas[3]);
+        this.formstoroutesservice.GetGeocode(this.rotas[3]);
+        setTimeout(() => 
+        {
+          this.mapainicioref.makeRequest(this.travelmode[1]);
+        },
+        1000);
+        setTimeout(() =>
+        {
+          this.methodsservice.resolveextminAPI();
+        }, 
+        2000);
+        setTimeout(() => 
+        {
+          this.mapafinalref.getresults(this.travelmode[1]);
+        },
+        15000);
         break;
       }
     }
