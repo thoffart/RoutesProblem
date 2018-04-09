@@ -82,6 +82,7 @@ export class MethodsService {
     var marcano: number[][];
     marcano = [];
     var z: number[] = [];
+    console.log(this.duration);
     for (var i = 0; i < 10; i++) {
 			marcano[i] = [];
 		}

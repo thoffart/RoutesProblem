@@ -19,7 +19,17 @@ export class MapafinalComponent implements OnInit {
   zoom: number = 14;
   travelmode: string = 'BICYCLING';
   markermodel: MarkerModel[] = [];
-  dir: any;
+  dir: { 
+    origin: {
+      lat: number, 
+      lng: number 
+    },
+    destination: {
+      lat: number,
+      lng: number
+    },
+    visible: boolean;
+  }
   lat: number = -22.3430567;
   lng: number = -49.0496513;
   dirs: { 
@@ -96,7 +106,7 @@ export class MapafinalComponent implements OnInit {
     this.dirs.forEach(di=> {
       di.visible = false;
     });
-    console.log(this.dirs);
+    console.log(this.markermodel);
     let cont: number = 0;
     for (let i=0; i<this.markermodel.length;i++) {
       for (let j=0; j<this.markermodel.length;j++) {
@@ -113,8 +123,10 @@ export class MapafinalComponent implements OnInit {
               destination: { lat: this.markermodel[i].lat, lng: this.markermodel[i].lng },
               visible: true
             };
+            console.log(this.dir);
             this.dirs.push(this.dir);
           }
+          console.log(this.dirs);
         }
       }
     }

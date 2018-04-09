@@ -3,6 +3,7 @@ import { FormstoroutesService } from './../sharedservices/formstoroutes.service'
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormArray} from '@angular/forms';
 import { MapafinalComponent } from '../mapafinal/mapafinal.component';
+import { MethodsService } from '../sharedservices/methods.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class FormsmapsComponent implements OnInit {
   travelmode: number = 0;
   methodo: number = 0;
 
-  constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService) {
+  constructor(private fb: FormBuilder, private formstoroute: FormstoroutesService, private methodsservice: MethodsService) {
     this.locationForm = fb.group({
         'ends': new FormArray([new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required), new FormControl(null, Validators.required)]),
          metodos: ['', Validators.required],
@@ -53,10 +54,32 @@ export class FormsmapsComponent implements OnInit {
     this.formstoroute.GetGeocode(this.rotas);
     this.rotas = [];
     setTimeout(() => 
-{
-  this.mapainicioref.makeRequest(this.travelmode);
-},
-500);
+    {
+      this.mapainicioref.makeRequest(Number(this.travelmode));
+    },
+    1000);
+    setTimeout(() =>
+    {
+      switch (Number(this.travelmode)) {
+        case 0:
+          break;
+        case 1:
+          break;
+        case 2:
+          this.methodsservice.resolvepercminAPI();
+          break;
+        case 3:
+          this.methodsservice.resolveextminAPI();
+          break;
+      }
+      this.methodsservice.resolvepercminAPI();
+    }, 
+      3000);
+    setTimeout(() => 
+    {
+      this.mapafinalref.getresults(Number(this.travelmode));
+    },
+      10000);
   
   }
 
