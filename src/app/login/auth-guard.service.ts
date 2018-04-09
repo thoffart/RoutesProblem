@@ -15,4 +15,9 @@ constructor(private authService: AuthService, private router: Router) { }
         }
     }
 
+    canActivateChild(route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot) {
+return this.canActivate(route, state);
+}
+
 }

@@ -1,19 +1,19 @@
-import { AuthGuardService } from './../login/auth-guard.service';
-import { Routes, RouterModule, Router } from '@angular/router';
+import { Routes, RouterModule, Router, PreloadAllModules } from '@angular/router';
 import { NgModule, Component } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
-import { HomeComponent } from '../home/home.component';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent},
+    { path: '', component: LoginComponent },
     { path: 'register', component: RegisterComponent},
-    { path: 'home', component: LoginComponent, canActivate: [AuthGuardService]}
+    {path: 'home', loadChildren: '../home/home.module#HomeModule'}
+
+    
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules} )
     ],
     exports: [RouterModule]
 })

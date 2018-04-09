@@ -49,6 +49,7 @@ export class AuthService {
                 .then(
                     (token: string) => this.token = token
                 );
+                console.log('to aqui');
                 this.router.navigate(['/home']);
                 console.log(response);
             }
