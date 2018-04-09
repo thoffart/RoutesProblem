@@ -321,8 +321,7 @@ export class MethodsService {
 
 
 
-
-  moment(matrix) {
+moment(matrix) {
     var aux = matrix.map(function(arr) {
       return arr.slice();
     });
@@ -338,10 +337,7 @@ export class MethodsService {
   }
 
   metodo(matrix) {
-    matrix.pop();
     this.x = matrix;
-    
-    console.log('teste0: ' + matrix);
 
     let original = this.moment(matrix);
 
@@ -353,42 +349,24 @@ export class MethodsService {
     matrix = this.subtraiColunas(matrix);
 
     let matrixCorte = this.moment(matrix);
-    let matrixPos =  this.moment(matrix);
+    let matrixPos = this.moment(matrix);
 
-    while (this.existeZero(matrixCorte)){
-
+    while (this.existeZero(matrixCorte))
       this.encontraZeros(matrixCorte, matrixPos);
 
-    }
-//    
-
-    // if (this.cortes.length == original.length) {
-    //   this.testaRotas(matrix);
-    //   return;
-    // }
-
-
-    this.subtraiMinimo(matrix,matrixPos);
-
-
-    
-    console.log("teste4: " + matrix);
+    this.subtraiMinimo(matrix,matrixCorte);
 
     matrixCorte = this.moment(matrix);
     matrixPos = this.moment(matrix);
 
     this.cortes = [];
 
-
-
     while(this.existeZero(matrixCorte))
       this.encontraZeros(matrixCorte,matrixPos)
 
     if (this.cortes.length == original.length) {
-      this.testaRotas(matrix, original);
+      this.testaRotas(matrix);
     }
-
-
 
     this.testeMatrix1 = matrixCorte;
   }
@@ -433,7 +411,7 @@ export class MethodsService {
     return true;
   }
 
-  testaRotas (matrix, original) {
+  testaRotas (matrix) {
     this.testeMatrix2 = matrix;
 
     let obj = this.contaZeros(matrix);
@@ -465,48 +443,27 @@ export class MethodsService {
     
     passado.push(destino);
     caminho.push([minL,destino]);
-    let flag=false;
-    let min=Infinity;
-    let index;
+
     while(passado.length<matrix.length) {
       aux = destino;
-
       for (let i=0; i<contaLin.length; i++) {
-        flag = false;
         if(matrix[destino][i]==0 && this.testaPassado(i,passado)){
           destino = i;
-          flag =true;
         }
       }
-      if(flag==false) {
-        for(let i=0;i<original.length;i++){
-          for (let j=0; j<original.length; j++){
-            if(min > original[i][j]){
-              min = original[i][j];
-              index = [i,j];
-            }
-          }
-        }
-
-        original[index[0]][index[1]] = Infinity;
-
-        this.metodo(original);
-
-      }
-
       
       passado.push(destino);  
       caminho.push([aux,destino]);
-
     }
 
+    console.log(caminho);
+    
     let rede:string[] = [];
     for (let i=0;i<caminho.length;i++){
       rede[i] = String(caminho[i][0]) + ' ' + String(caminho[i][1]);
     }
     console.log(rede);
     this.resultado = rede;
-
     this.testeMatrix2 = caminho;
 
     this.cortes = passado;
@@ -534,7 +491,6 @@ export class MethodsService {
           matrix[i][j]-=min;
       }
     }
-    console.log('teste1: ' + matrix);
 
   }
 
@@ -572,7 +528,6 @@ export class MethodsService {
           matrix[i][j] -= minLin[i]
       }
     }
-    console.log("teste2: " + matrix);
     return matrix;
   }
 
@@ -598,7 +553,6 @@ export class MethodsService {
           matrix[i][j] -= minCol[j];
       }
     }
-    console.log("teste3: " + matrix);
 
     return matrix;
 
@@ -634,14 +588,14 @@ export class MethodsService {
     if(auxLin > auxCol) {      
       //laço que coloca posição 
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[posLin][i] += 1;
+        this.pos[i][posLin] += 1;
       }
       
       matrixCorte.splice(posLin,1);
     }
     else {
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[i][posCol] += 1;
+        this.pos[posCol][i] += 1;
       }
 
       for (let i in matrixCorte) {
@@ -669,6 +623,15 @@ export class MethodsService {
   resolvecaxeiroAPI() {
     this.getarrays();
     console.log("TESTE00" + this.distance);
+    this.distance.pop();
+    this.distance = [
+      [1000, 65, 53, 37], 
+      [65, 1000, 95, 1000],
+      [53, 95, 1000, 81], 
+      [37, 1000, 81, 1000]
+    ];
+  
+
     this.metodo(this.distance);
   }
 
