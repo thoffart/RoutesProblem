@@ -1,9 +1,10 @@
 <div class="container-fluid">
-  <div class="row d-flex">
-  <div class="col-lg-3" *ngFor="let i of itens">
+  <br>
+  <div class="row d-flex" *ngFor="let k of distance; let q = index">
+  <div class="col-lg-12" >
     <!-- Monthly Usage-->
     <div class="card data-usage">
-      <h2 class="display h4">Exemplo {{i}} - {{metodos[i-1]}}</h2>
+      <h2 class="display h4">Exemplo {{q+1}} - {{metodos[q]}}</h2>
       <div class="row d-flex align-items-center">
         <div class="col-sm-12">
           <h5>Matriz:</h5>
@@ -14,11 +15,11 @@
               <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col" *ngFor="let itens of distance; let o = index">{{o+1}}</th>
+                    <th scope="col" *ngFor="let itens of k; let o = index">{{o+1}}</th>
                   </tr>
                 </thead>
             <tbody>
-              <tr *ngFor= "let i of distance; let x = index">
+              <tr *ngFor= "let i of k; let x = index">
                 <th scope="row">{{x+1}}</th>
                 <td *ngFor = "let j of i">{{j}}</td>
               </tr>
