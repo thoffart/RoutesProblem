@@ -462,54 +462,33 @@ export class MethodsService {
         destino = i;
       }
     }
-    
     passado.push(destino);
     caminho.push([minL,destino]);
-    let flag=false;
-    let min=Infinity;
-    let index;
+
     while(passado.length<matrix.length) {
       aux = destino;
-
       for (let i=0; i<contaLin.length; i++) {
-        flag = false;
         if(matrix[destino][i]==0 && this.testaPassado(i,passado)){
           destino = i;
-          flag =true;
         }
       }
-      if(flag==false) {
-        for(let i=0;i<original.length;i++){
-          for (let j=0; j<original.length; j++){
-            if(min > original[i][j]){
-              min = original[i][j];
-              index = [i,j];
-            }
-          }
-        }
-
-        original[index[0]][index[1]] = Infinity;
-
-        this.metodo(original);
-
-      }
-
       
       passado.push(destino);  
       caminho.push([aux,destino]);
-
     }
 
+    console.log(caminho);
+    
     let rede:string[] = [];
     for (let i=0;i<caminho.length;i++){
       rede[i] = String(caminho[i][0]) + ' ' + String(caminho[i][1]);
     }
     console.log(rede);
-    this.resultado = rede;
 
     this.testeMatrix2 = caminho;
 
     this.cortes = passado;
+
 
 
 
@@ -634,14 +613,14 @@ export class MethodsService {
     if(auxLin > auxCol) {      
       //laço que coloca posição 
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[posLin][i] += 1;
+        this.pos[i][posLin] += 1;
       }
       
       matrixCorte.splice(posLin,1);
     }
     else {
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[i][posCol] += 1;
+        this.pos[posCol][i] += 1;
       }
 
       for (let i in matrixCorte) {
