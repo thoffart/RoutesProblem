@@ -338,10 +338,7 @@ export class MethodsService {
   }
 
   metodo(matrix) {
-    matrix.pop();
     this.x = matrix;
-    
-    console.log('teste0: ' + matrix);
 
     let original = this.moment(matrix);
 
@@ -353,42 +350,24 @@ export class MethodsService {
     matrix = this.subtraiColunas(matrix);
 
     let matrixCorte = this.moment(matrix);
-    let matrixPos =  this.moment(matrix);
+    let matrixPos = this.moment(matrix);
 
-    while (this.existeZero(matrixCorte)){
-
+    while (this.existeZero(matrixCorte))
       this.encontraZeros(matrixCorte, matrixPos);
 
-    }
-//    
-
-    // if (this.cortes.length == original.length) {
-    //   this.testaRotas(matrix);
-    //   return;
-    // }
-
-
-    this.subtraiMinimo(matrix,matrixPos);
-
-
-    
-    console.log("teste4: " + matrix);
+    this.subtraiMinimo(matrix,matrixCorte);
 
     matrixCorte = this.moment(matrix);
     matrixPos = this.moment(matrix);
 
     this.cortes = [];
 
-
-
     while(this.existeZero(matrixCorte))
       this.encontraZeros(matrixCorte,matrixPos)
 
     if (this.cortes.length == original.length) {
-      this.testaRotas(matrix, original);
+      this.testaRotas(matrix);
     }
-
-
 
     this.testeMatrix1 = matrixCorte;
   }
@@ -433,7 +412,7 @@ export class MethodsService {
     return true;
   }
 
-  testaRotas (matrix, original) {
+  testaRotas (matrix) {
     this.testeMatrix2 = matrix;
 
     let obj = this.contaZeros(matrix);
@@ -462,6 +441,7 @@ export class MethodsService {
         destino = i;
       }
     }
+    
     passado.push(destino);
     caminho.push([minL,destino]);
 
@@ -491,7 +471,6 @@ export class MethodsService {
 
 
 
-
   }
 
   subtraiMinimo(matrix, matrixCorte) {
@@ -513,7 +492,6 @@ export class MethodsService {
           matrix[i][j]-=min;
       }
     }
-    console.log('teste1: ' + matrix);
 
   }
 
@@ -551,7 +529,6 @@ export class MethodsService {
           matrix[i][j] -= minLin[i]
       }
     }
-    console.log("teste2: " + matrix);
     return matrix;
   }
 
@@ -577,7 +554,6 @@ export class MethodsService {
           matrix[i][j] -= minCol[j];
       }
     }
-    console.log("teste3: " + matrix);
 
     return matrix;
 
@@ -648,6 +624,15 @@ export class MethodsService {
   resolvecaxeiroAPI() {
     this.getarrays();
     console.log("TESTE00" + this.distance);
+    this.distance.pop();
+    this.distance = [
+      [1000, 65, 53, 37], 
+      [65, 1000, 95, 1000],
+      [53, 95, 1000, 81], 
+      [37, 1000, 81, 1000]
+    ];
+  
+
     this.metodo(this.distance);
   }
 
