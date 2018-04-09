@@ -15,7 +15,7 @@ export class ExemplosComponent implements OnInit {
   itens = [1, 2, 3, 4];
   rotas: string[][] = [];
   travelmode: number[] = [];
-  metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Fluxo Máximo', 'Caxeiro'];
+  metodos = ['Extensão Mínima', 'Percurso Mínimo', 'Caxeiro'];
   constructor(private formstoroutesservice: FormstoroutesService, private methodsservice: MethodsService) { }
 
   ngOnInit() {
@@ -103,10 +103,6 @@ export class ExemplosComponent implements OnInit {
           this.mapafinalref.getresults(this.travelmode[2]);
         },
         10000);
-        break;
-      }
-      case 4: {
-        
         break;
       }
     }

@@ -338,7 +338,10 @@ export class MethodsService {
   }
 
   metodo(matrix) {
+    matrix.pop();
     this.x = matrix;
+    
+    console.log('teste0: ' + matrix);
 
     let original = this.moment(matrix);
 
@@ -352,22 +355,40 @@ export class MethodsService {
     let matrixCorte = this.moment(matrix);
     let matrixPos =  this.moment(matrix);
 
-    while (this.existeZero(matrixCorte))
+    while (this.existeZero(matrixCorte)){
+
       this.encontraZeros(matrixCorte, matrixPos);
 
-    this.subtraiMinimo(matrix,matrixCorte);
+    }
+//    
+
+    // if (this.cortes.length == original.length) {
+    //   this.testaRotas(matrix);
+    //   return;
+    // }
+
+
+    this.subtraiMinimo(matrix,matrixPos);
+
+
+    
+    console.log("teste4: " + matrix);
 
     matrixCorte = this.moment(matrix);
     matrixPos = this.moment(matrix);
 
     this.cortes = [];
 
+
+
     while(this.existeZero(matrixCorte))
       this.encontraZeros(matrixCorte,matrixPos)
 
     if (this.cortes.length == original.length) {
-      this.testaRotas(matrix);
+      this.testaRotas(matrix, original);
     }
+
+
 
     this.testeMatrix1 = matrixCorte;
   }
@@ -412,7 +433,7 @@ export class MethodsService {
     return true;
   }
 
-  testaRotas (matrix) {
+  testaRotas (matrix, original) {
     this.testeMatrix2 = matrix;
 
     let obj = this.contaZeros(matrix);
@@ -444,14 +465,35 @@ export class MethodsService {
     
     passado.push(destino);
     caminho.push([minL,destino]);
-
+    let flag=false;
+    let min=Infinity;
+    let index;
     while(passado.length<matrix.length) {
       aux = destino;
+
       for (let i=0; i<contaLin.length; i++) {
+        flag = false;
         if(matrix[destino][i]==0 && this.testaPassado(i,passado)){
           destino = i;
+          flag =true;
         }
       }
+      if(flag==false) {
+        for(let i=0;i<original.length;i++){
+          for (let j=0; j<original.length; j++){
+            if(min > original[i][j]){
+              min = original[i][j];
+              index = [i,j];
+            }
+          }
+        }
+
+        original[index[0]][index[1]] = Infinity;
+
+        this.metodo(original);
+
+      }
+
       
       passado.push(destino);  
       caminho.push([aux,destino]);
@@ -492,6 +534,7 @@ export class MethodsService {
           matrix[i][j]-=min;
       }
     }
+    console.log('teste1: ' + matrix);
 
   }
 
@@ -529,6 +572,7 @@ export class MethodsService {
           matrix[i][j] -= minLin[i]
       }
     }
+    console.log("teste2: " + matrix);
     return matrix;
   }
 
@@ -554,6 +598,7 @@ export class MethodsService {
           matrix[i][j] -= minCol[j];
       }
     }
+    console.log("teste3: " + matrix);
 
     return matrix;
 
@@ -589,14 +634,14 @@ export class MethodsService {
     if(auxLin > auxCol) {      
       //laço que coloca posição 
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[i][posLin] += 1;
+        this.pos[posLin][i] += 1;
       }
       
       matrixCorte.splice(posLin,1);
     }
     else {
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[posCol][i] += 1;
+        this.pos[i][posCol] += 1;
       }
 
       for (let i in matrixCorte) {
@@ -623,6 +668,7 @@ export class MethodsService {
 
   resolvecaxeiroAPI() {
     this.getarrays();
+    console.log("TESTE00" + this.distance);
     this.metodo(this.distance);
   }
 
