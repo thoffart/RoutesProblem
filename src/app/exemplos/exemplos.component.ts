@@ -33,6 +33,13 @@ export class ExemplosComponent implements OnInit {
       'Curitiba, Paraná'
     ];
     this.travelmode[1] = 1;
+    this.rotas[2] = [
+      'Axel-Springer-Straße 65, 10969 Berlin, Alemanha',
+      'Hemonystraat 16, 1074 BP Amsterdam, Países Baixos',
+      'Mühlegasse 11, 8001 Zürich, Suíça',
+      'Santiago Bernabéu, 28046 Madrid, Espanha'
+    ]
+    this.travelmode[2] = 0;
   }
 
   exemplo(i: any): void {
@@ -78,7 +85,23 @@ export class ExemplosComponent implements OnInit {
         break;
       }
       case 3: {
-        this.methodsservice.fluxomaximo();
+        this.formstoroutesservice.Addroutes(this.rotas[2]);
+        this.formstoroutesservice.GetGeocode(this.rotas[2]);
+        setTimeout(() => 
+        {
+          this.mapainicioref.makeRequest(this.travelmode[2]);
+        },
+        1000);
+        setTimeout(() =>
+        {
+          this.methodsservice.resolvecaxeiroAPI();
+        }, 
+        2000);
+        setTimeout(() => 
+        {
+          this.mapafinalref.getresults(this.travelmode[2]);
+        },
+        10000);
         break;
       }
       case 4: {

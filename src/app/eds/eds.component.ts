@@ -38,13 +38,10 @@ export class EdsComponent implements OnInit {
       [Infinity, Infinity, Infinity, Infinity, Infinity]
     ],
     [
-      [1000,     2,   4,   1,    10,   1000,   1000],
-      [    2, 1000, 1000,   1,   1000,  1000,   1000],
-      [    4, 1000,1000,   4,   1000,  1000,      3],
-      [    1,    1,   4,1000,      7,    10,      7],
-      [   10, 1000,1000,   7,   1000,     8,      5],
-      [ 1000, 1000,1000,  10,      8,  1000,      3],
-      [ 1000, 1000,   3,   7,      5,     3,   1000]
+      [1000, 65, 53, 37],
+      [65, 1000, 95, 1000],
+      [53, 95, 1000, 81],
+      [37, 1000, 81, 1000],
     ]
   ];
   constructor(private methodsservice: MethodsService) { }
@@ -71,6 +68,13 @@ export class EdsComponent implements OnInit {
       }
       case 2: {
         this.resultadofm = this.methodsservice.fluxomaximo();
+        this.calculado[i] = true;
+        break;
+      }
+      case 3: {
+        this.methodsservice.resolvecaxeiro();
+        this.resultados[i] = this.methodsservice.sendrede();
+        console.log(this.resultados[i]);
         this.calculado[i] = true;
         break;
       }
