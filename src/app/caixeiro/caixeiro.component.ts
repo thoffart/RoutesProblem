@@ -118,36 +118,53 @@ export class CaixeiroComponent implements OnInit {
     let minArr = [];
     let minL;
     let destino;
-    let aux=9000;
+    let aux=Infinity;
     let passado = [];
     let caminho: number[][] = [];
 
+    aux=Infinity;
     for (let i=0;i<contaLin.length;i++){
       if (aux > contaLin[i]) {
         aux = contaLin[i];
         minL = i;
       }
     }
-
+    contaLin[minL] = Infinity;
     passado.push(minL);
 
     for (let i=0; i<contaLin.length; i++) {
-      if(matrix[minL][i]==0){
+      if(matrix[minL][i]==0 && this.testaPassado(i,passado)){
         destino = i;
       }
     }
+    
     passado.push(destino);
+    caminho.push([minL,destino]);
 
-    while(passado.length<=4) {
+    while(passado.length<matrix.length) {
+      aux = destino;
       for (let i=0; i<contaLin.length; i++) {
         if(matrix[destino][i]==0 && this.testaPassado(i,passado)){
           destino = i;
         }
       }
+      
       passado.push(destino);  
+      caminho.push([aux,destino]);
+
     }
 
+    let rede:string[] = [];
+    for (let i=0;i<caminho.length;i++){
+      rede[i] = String(caminho[i][0]) + ' ' + String(caminho[i][1]);
+    }
+    console.log(rede);
+
+    this.testeMatrix2 = caminho;
+
     this.cortes = passado;
+
+
 
   }
 
@@ -164,9 +181,9 @@ export class CaixeiroComponent implements OnInit {
     //soma o mínimo em valores cruzados duas vezes, subtrai nos valores que não foram cruzados nenhuma vez
     for (let i=0; i<matrix.length; i++) {
       for (let j=0; j<matrix[0].length; j++) {
-        if (this.pos[i][j]==2)
+        if (this.pos[i][j]==2 && matrix[i][j]!=0)
           matrix[i][j]+=min;
-        else if(this.pos[i][j]==0)
+        else if(this.pos[i][j]==0 && matrix[i][j]!=0)
           matrix[i][j]-=min;
       }
     }
@@ -267,14 +284,14 @@ export class CaixeiroComponent implements OnInit {
     if(auxLin > auxCol) {      
       //laço que coloca posição 
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[posLin][i] += 1;
+        this.pos[i][posLin] += 1;
       }
       
       matrixCorte.splice(posLin,1);
     }
     else {
       for(let i=0;i<matrixPos.length;i++) {
-        this.pos[i][posCol] += 1;
+        this.pos[posCol][i] += 1;
       }
 
       for (let i in matrixCorte) {
